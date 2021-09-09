@@ -1,0 +1,43 @@
+Minidoro is a very minimalistic but reliable Pomodoro® Technique timer
+
+Pomodoro® Technique is extremely simple but efficient time management technique developed by Francesco Cirillo.
+
+The proposal is it's simpler to concentrate on work for a relatively short period (i.e., 25 min) keeping in mind you can take a rest or switch to another activity after that.
+
+That's very simple:
+<ul>
+<li>You split your work for 25 minute intervals, separated by short break periods
+<li>In these 25 minute intervals try to focus on your work as much as possible, try to not distract yourself and to avoid other distractions
+<li>After a 25 minute interval ends take a 5 minute break. During the break do any other activities except for the previous work
+<li>Return to the work after a break (or not, if you've finished)
+<li>Take a long break about 10–30 minutes after every four work intervals
+</ul>
+
+<a href="http://www.pomodorotechnique.com/">Full Pomodoro® Technique description on the author's website</a>
+
+The Minidoro app may help you in Pomodoro® Technique adoption! Minidoro has:
+<ul>
+<li>Minimalistic user interface: only countdown screen with big digits, it's on all the time while timer's on
+<li>See only how much time left, no other distractions
+<li>It may turn Do-not-Disturb Mode in your device, no other apps will distract you
+<li>You may count your distractions, by yourself or by outside
+<li>You may set up your preferences: periods duration, long break frequency, notifications
+<li>Dark theme (the only)
+<li>No ads
+<li>Works on any Android device, phone, table or watch, you may utilize even your old smartphone
+<li>Proper work on Samsung® phones and tables (<a href="https://dontkillmyapp.com">https://DontKillMyApp.com</a> is not applicable)
+</ul>
+
+<b>Wear OS notice</b>
+
+It would be a great feature that Minidoro running on Wear OS turns DnD mode on both Wear OS and Android device. It should be generally possible since Wear OS may turn DnD on Android devices. But there's one nuisance. It's not possible to allow any app to operate DnD Mode in Wear OS from Wear OS UI. The only way to allow Minidoro to operate DnD in Wear OS is ADB command (no root should be needed).
+
+Install Minidoro, turn Wear OS in debug mode and connect to computer.
+
+After that for Wear OS 2.2 (based on Android 9) and above run this: "adb shell cmd notification allow_listener com.github.ympavlov.minidoro/com.github.ympavlov.minidoro.dnd.DndModeServiceV21"
+
+For any other Wear OS version below (based on Android 8.1 and below) use this: "adb shell settings put secure enabled_notification_listeners com.google.android.wearable.app/com.google.android.clockwork.stream.NotificationCollectorService:com.github.ympavlov.minidoro/com.github.ympavlov.minidoro.dnd.DndModeServiceV21"
+
+
+
+Pomodoro® is a registered trademark Francesco Cirillo. This app is not affiliated with Francesco Cirillo.

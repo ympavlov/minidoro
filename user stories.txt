@@ -1,0 +1,32 @@
+﻿1. As a user I can start work timer at the app start or after break time's finished,
+	so that
+		I can see in my devices the time left for a work period without touching it
+		and then I can get a notification when timer stops
+2. As a user I can start break timer after work time's finished,
+	so that
+		I can see in my devices the time left for a break period without touching it
+		and then I can get a notification when timer stops
+3. As a user I can start long break timer after specified number of work times finished since beginning or previous long break),
+	so that
+		I can see in my devices the time left for a long break period without touching it
+		and then I can get a notification when timer stops
+4. As a user I may switch from the Minidoro app to any other phone during a break
+	so that
+		I can see approximate time left for a break in the system bar or lock screen
+		and I'll be notified exactly when break will be over
+		and I'd may continue my Pomodoro process using Minidoro
+4. As a user I can use default pomodoro technique timing values (periods duration and long break periodicity)
+5. As a user I can specify my own timing values (periods duration and long break periodicity)
+6. As a user I can set up Do-not-Disturb mode will be on during a work period,
+	so that
+		Do-not-Disturb mode will start when I start work timer and will finish when work period will be stopped
+7. As a user I can specify ringtone I hear when a period ens
+8. As a user I can count my finished work periods,
+	so that
+		I can see my work periods counter on the screen
+9. As a user I can count my internal and external distractions,
+	so that
+		I can see my distractions counters on the screen
+10. As a user I can stop current work period,
+	so that
+		I can see work timer reset and all counters reset on values valid on this work period's beginning

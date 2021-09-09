@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="appName">Minidoro</string>
+
+	<string name="dndModeServiceV21Desc">Only Important Messages When Work (Android 5)</string>
+
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+
+	<string name="btnStopDesc">Stop current work</string>
+	<string name="msgSureToStop">Are you sure you want to stop?</string>
+	<string name="msgSureToQuit">Are you sure you want to stop and quit?</string>
+	<string name="msgUseAdbForDnDAccess">Please use ADB to allow DnD</string>
+
+	<string name="msgHaveWorkHead">Have to work</string>
+	<string name="msgHaveWorkBody">It\'s time to work</string>
+	<string name="msgHaveBreakHead">Have a break</string>
+	<string name="msgHaveBreakBody">It\'s time to have a break</string>
+	<string name="msgHaveLongBreakHead">Have a long break</string>
+	<string name="msgHaveLongBreakBody">It\'s time to have a long break</string>
+
+	<plurals name="barLeftMinutes">
+		<item quantity="one">%d minute left for a break</item>
+		<item quantity="other">%d minutes left for a break</item>
+	</plurals>
+	<string name="barBreakWish">Have a nice break</string>
+	<string name="barMinidoroNotifies">Minidoro notifies you when break ends</string>
+
+	<string name="preferences">Preferences</string>
+	<string name="menuAboutPomodoro">About Pomodoro® Technique</string>
+	<string name="menuQuit">Stop &amp; Quit</string>
+	<string name="menuRemoveQ">Remove one apostrophe ( ʼ )</string>
+	<string name="menuRemoveD">Remove one dash ( - )</string>
+
+	<string name="quote" translatable="false">ʼ</string>
+	<string name="dash" translatable="false">-</string>
+
+	<string name="editPreferences">Edit Preferences</string>
+
+	<plurals name="prefMin">
+		<item quantity="other">%d min</item>
+	</plurals>
+	<plurals name="prefPomodoros">
+		<item quantity="one">After every pomodoro</item>
+		<item quantity="other">Every %d pomodoros</item>
+	</plurals>
+
+	<string name="prefGroupTimer">Timer Settings</string>
+	<string name="prefWorkDuration">Work Duration</string>
+	<string name="prefWorkDurationD">Enter Work Period Duration (in minutes)</string>
+	<string name="prefBreakDuration">Break Duration</string>
+	<string name="prefBreakDurationD">Enter Break Duration (in minutes)</string>
+	<string name="prefLongBreakDuration">Long Break Duration</string>
+	<string name="prefLongBreakDurationD">Enter Long Break Duration (in minutes)</string>
+	<string name="prefLongBreakPeriodicity">Long Break After</string>
+	<string name="prefLongBreakPeriodicityD">Enter Long Break Periodicity</string>
+
+	<string name="prefGroupNotification">Notification Settings</string>
+	<string name="prefDndMode">Turn Do-Not-Disturb On When Work</string>
+	<string name="prefDndModeComment">System setting change is required to use DnD Mode</string>
+	<string name="prefMinidoroRingtone">Minidoro Ringtone</string>
+	<string name="prefMinidoroRingtoneOn">Use Minidoro ringtone for notifications</string>
+	<string name="prefMinidoroRingtoneOff">Choose ringtone for notifications</string>
+	<string name="prefRingtone">Ringtone</string>
+	<string name="prefOverrideSilent">Override Silent Mode</string>
+	<string name="prefOverrideSilentOn">Play sound even in silent/vibrate modes</string>
+	<string name="prefOverrideSilentOff">Don\'t play sound in silent/vibrate modes</string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.github.ympavlov.minidoro">
+
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.VIBRATE" /> <!-- override silent ringing, DnD fallback -->
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- override silent ringing, DnD fallback -->
+	<uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" /> <!-- DnD mode -->
+	<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+	<application
+		android:label="@string/appName"
+		android:allowBackup="false"
+		android:icon="@mipmap/minidoro">
+		<activity
+			android:name=".PomodoroActivity"
+			android:launchMode="singleTask"
+			android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|fontScale|keyboard|keyboardHidden"> <!--  -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<action android:name="android.intent.action.VIEW" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".PreferencesActivity"
+			android:exported="false"
+			android:label="@string/preferences">
+			<intent-filter>
+				<action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<service android:name=".PomodoroService" />
+
+		<service
+			android:name=".dnd.DndModeServiceV21"
+			android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+			android:label="@string/dndModeServiceV21Desc">
+			<intent-filter>
+				<action android:name="android.service.notification.NotificationListenerService" />
+			</intent-filter>
+		</service>
+		<service android:name=".dnd.DndModeServiceV23" />
+
+		<receiver
+			android:name=".BarIconUpdater"
+			android:enabled="true" />
+	</application>
+</manifest>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="appName">Минидоро</string>
+
+	<string name="dndModeServiceV21Desc">Только важные уведолмения во время работы (Android 5)</string>
+
+	<string name="yes">Да</string>
+	<string name="no">Нет</string>
+
+	<string name="btnStopDesc">Остановить текущий помидор</string>
+	<string name="msgSureToStop">Действительно остановить помидор?</string>
+	<string name="msgSureToQuit">Остановить и выйти?</string>
+	<string name="msgUseAdbForDnDAccess">Используейте ADB чтобы разрешить это</string>
+
+	<string name="msgHaveWorkHead">Время работать</string>
+	<string name="msgHaveWorkBody">Пора вернуться к работе</string>
+	<string name="msgHaveBreakHead">Время прерваться</string>
+	<string name="msgHaveBreakBody">Пора сделать перерыв</string>
+	<string name="msgHaveLongBreakHead">Время длогого перерыва</string>
+	<string name="msgHaveLongBreakBody">Пора сделать долгий перерыв</string>
+
+	<plurals name="barLeftMinutes">
+		<item quantity="one">%d минута перерыва осталась</item>
+		<item quantity="few">%d минуты перерыва осталось</item>
+		<item quantity="many">%d минут перерыва осталось</item>
+		<item quantity="other">%d минут перерыва осталось</item>
+	</plurals>
+	<string name="barBreakWish">Приятного перерыва!</string>
+	<string name="barMinidoroNotifies">Минидоро уведомит вас об окончании перерыва</string>
+
+	<string name="preferences">Предпочтения</string>
+	<string name="menuAboutPomodoro">О Технике Помидора®</string>
+	<string name="menuQuit">Остановить и выйти</string>
+	<string name="menuRemoveQ">Убрать один апостроф ( ʼ )</string>
+	<string name="menuRemoveD">Убрать один прочерк ( - )</string>
+
+	<string name="editPreferences">Изменить предпочтения</string>
+
+	<string name="prefGroupTimer">Настройки таймера</string>
+	<plurals name="prefMin">
+		<item quantity="one">%d минуту</item>
+		<item quantity="few">%d минуты</item>
+		<item quantity="many">%d минут</item>
+		<item quantity="other">%d минут</item>
+	</plurals>
+	<plurals name="prefPomodoros">
+		<item quantity="one">Каждый %d помидор</item>
+		<item quantity="few">Каждые %d помидора</item>
+		<item quantity="many">Каждые %d помидоров</item>
+		<item quantity="other">Каждые %d помидоров</item>
+	</plurals>
+	<string name="prefWorkDuration">Работа длится</string>
+	<string name="prefWorkDurationD">Задайте длительность периода работы (в минутах)</string>
+	<string name="prefBreakDuration">Перерыв длится</string>
+	<string name="prefBreakDurationD">Задайте длительность перерыва (в минутах)</string>
+	<string name="prefLongBreakDuration">Долгий перерыв длится</string>
+	<string name="prefLongBreakDurationD">Задайте длительность долгого перерыва (в минутах)</string>
+	<string name="prefLongBreakPeriodicity">Долгий перерыв каждые</string>
+	<string name="prefLongBreakPeriodicityD">Задайте периодичность долгого перерыва</string>
+
+	<string name="prefGroupNotification">Настройки уведомлений</string>
+	<string name="prefDndMode">Режим «Не беспокоить» во время работы</string>
+	<string name="prefDndModeComment">Потребуется системное разрешение для режима «Не беспокоить»</string>
+	<string name="prefMinidoroRingtone">Мелодия Минидоро</string>
+	<string name="prefMinidoroRingtoneOn">Использовать мелодию Минидоро для уведомлений</string>
+	<string name="prefMinidoroRingtoneOff">Использовать выбранную мелодию для уведомлений</string>
+	<string name="prefRingtone">Мелодия уведомлений</string>
+	<string name="prefOverrideSilent">Игнорировать беззвучный режим</string>
+	<string name="prefOverrideSilentOn">Играть мелодию даже в беззвучном режиме/только вибрации</string>
+	<string name="prefOverrideSilentOff">Не играть мелодию в беззвучном режиме/только вибрации</string>
+</resources>

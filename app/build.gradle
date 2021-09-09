@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 26
+	buildToolsVersion "28.0.3"
+	defaultConfig {
+		applicationId "com.github.ympavlov.minidoro"
+		//noinspection MinSdkTooLow
+		minSdkVersion 5 // on 4 would be working well removing reference on newer API is needed
+		// compromise targetSdkVersion 11 to enable good appearance and old-style menu button (because new-style button'd be hidden with app bar)
+		//noinspection ExpiredTargetSdkVersion
+		targetSdkVersion 11
+		versionCode 10
+		versionName "1.0"
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+		void
+	}
+	buildTypes {
+		debug {
+			minifyEnabled false
+			useProguard false
+			void
+		}
+		release {
+			minifyEnabled true
+			useProguard true
+			void
+		}
+	}
+	tasks.withType(JavaCompile) {
+		configure(options) {
+			options.compilerArgs << '-Xlint:deprecation'
+		}
+	}
+	buildscript {
+		configurations.all {
+			resolutionStrategy {
+				dependencySubstitution {
+					substitute module('net.sf.proguard:proguard-gradle') with module('com.guardsquare:proguard-gradle:7.0.0')
+				}
+			}
+		}
+	}
+}
+
+dependencies {
+	testImplementation 'junit:junit:4.+'
+}
+
+android.applicationVariants.all { variant ->
+	if ((variant.name).equals("release")) {
+		def task = project.tasks.create('createChromeExtension', Copy)
+		def apk = null
+		variant.outputs.each {
+			output -> apk = output.outputFile
+		}
+		task.from(apk) {
+			rename { String fileName -> 'Minidoro.apk' }
+			into "vendor/chromium/crx"
+		}
+		task.from("src/main/res/mipmap/minidoro.png") {
+			into "."
+		}
+		task.into "crx"
+
+		//noinspection GroovyAssignabilityCheck
+		task.dependsOn variant.assemble
+	}
+}

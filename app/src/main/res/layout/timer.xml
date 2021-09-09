@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/centerPanel"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:orientation="vertical">
+
+	<Button
+		android:id="@+id/start"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center" /> <!-- 83F38D for bw -->
+	<Button
+		android:id="@+id/startSmall"
+		android:visibility="gone"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center" /> <!-- EB99B3 for bw -->
+
+	<LinearLayout
+		android:id="@+id/countdownPanel"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:visibility="gone"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/stop"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:visibility="gone"
+			android:text="■️"
+			tools:ignore="HardcodedText"
+			android:contentDescription="@string/btnStopDesc"
+			android:textColor="#F29268" />
+
+		<com.github.ympavlov.minidoro.CountDownView
+			android:id="@+id/countdown"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center" />
+	</LinearLayout>
+
+</LinearLayout>

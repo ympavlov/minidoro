@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<resources>
+	<integer name="startBtnRelSize">4</integer>
+	<integer name="tomatosRelSize">6</integer>
+</resources>

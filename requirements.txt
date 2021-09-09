@@ -1,0 +1,18 @@
+﻿Complex requirements
+This file answers why it was made such way
+
+[0] Base functionality on smartphone and tablet (Android, Sailfish, BB), smart watch (Wear OS), Chrome(OS), computer
+[1] Countdown doesn't stop if activity come out of foreground
+[2] Countdown break time and show it in the system bar after user came out from Minidoro, but hasn't closed it
+[2a] Show and update break countdown icon in the system bar and on the lock screen
+[3] Dark theme. All buttons have same backgrounds as activity but also have click animation and can be selected
+[4] Make time's up notifications in the mode user prefers (vibrate, light, bracelet, sound)
+[4a] But sound can be turned on for Minidoro forcibly
+[5] Restore timer and all the counters if app stopped by system (failure)
+[5a] Don't restore if user's swiped Minidoro out from app list
+[6] Turn Do-not-Disturb mode if user prefer this when works. Restore DnD and ringer modes after work time finishes
+[7] Distraction counters: own (-) and external ('). Increment on click
+[7a] It's possible to decrease them too
+[8] Work period may be stopped and restarted again later (without clearing of tomatos, dashes and quotes made in previous periods)
+[9] Expand Minidoro to the whole screen when work begins, but show clock (it'd be hidden otherwise). Restore regular view when work ends
+[10] Ask after user pressed back button about finishing pomodoro tracking

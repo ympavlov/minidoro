@@ -1,0 +1,1 @@
+Minimalistic and reliable Pomodoro® Technique timer

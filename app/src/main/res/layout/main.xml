@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:keepScreenOn="true"
+	android:layout_marginTop="1dp"
+	android:layout_marginBottom="1dp"
+	android:layout_marginLeft="1dp"
+	android:layout_marginRight="1dp"
+	tools:context=".PomodoroActivity">
+
+	<include layout="@layout/timer" />
+
+	<Button
+		android:id="@+id/dashes"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentBottom="true"
+		android:textScaleX="1.3"
+		android:enabled="false"
+		android:textAlignment="center" />
+
+	<Button
+		android:id="@+id/quotes"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:textScaleX="1.3"
+		android:enabled="false"
+		android:textAlignment="center"
+		tools:ignore="RelativeOverlap" />
+
+	<com.github.ympavlov.minidoro.Clock
+		android:id="@+id/currTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
+		android:textAlignment="center"
+		android:visibility="gone" />
+
+	<ImageButton
+		android:id="@+id/preferences"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
+		android:scaleType="fitCenter"
+		android:src="@android:drawable/ic_menu_preferences"
+		android:contentDescription="@string/editPreferences" />
+
+	<TextView
+		android:id="@+id/tomatos"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		android:textAlignment="center"
+		android:textColor="#e26421"
+		android:textScaleX="1.4"
+		tools:ignore="RelativeOverlap"
+		android:minWidth="420dp" /> <!-- WA: ICS 4.0 cannot calc width by itself correctly -->
+</RelativeLayout>

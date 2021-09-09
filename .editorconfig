@@ -1,0 +1,7 @@
+root = true
+[*]
+end_of_line = lf
+insert_final_newline = false
+indent_style = tabs
+# hope it will work in future
+smart_tabs = true

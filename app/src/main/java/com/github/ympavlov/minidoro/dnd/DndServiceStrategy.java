@@ -4,7 +4,7 @@ import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
+//import android.util.Log;
 
 public class DndServiceStrategy implements ServiceConnection, DndStrategy
 {
@@ -27,7 +27,7 @@ public class DndServiceStrategy implements ServiceConnection, DndStrategy
 	@Override
 	public void onServiceConnected(ComponentName n, IBinder binder)
 	{
-		Log.d("Minidoro", "DND Service connected");
+		//Log.d("Minidoro", "DND Service connected");
 		// That's the local service, we can cast its IBinder to a concrete class and directly access it
 		service = ((DndModeService.DndBinder) binder).getService();
 	}
@@ -38,7 +38,7 @@ public class DndServiceStrategy implements ServiceConnection, DndStrategy
 	@Override
 	public void onServiceDisconnected(ComponentName componentName)
 	{
-		Log.d("Minidoro", "DND Service DISCONNECTED");
+		//Log.d("Minidoro", "DND Service DISCONNECTED");
 		service = null;
 	}
 

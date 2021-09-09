@@ -7,10 +7,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.util.Log;
-import com.github.ympavlov.minidoro.nofication.NotificationIcons;
 import com.github.ympavlov.minidoro.nofication.NotificationFactory;
+import com.github.ympavlov.minidoro.nofication.NotificationIcons;
 
 /**
  * [2a] Updates notification icon on status bar and lock screen. Uses alarms to operate in doze mode
@@ -51,7 +49,7 @@ public class BarIconUpdater extends BroadcastReceiver
 		if (n > 0) {
 			AlarmManager alarmManager = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
 			if (alarmManager != null) {
-				Log.d("Minidoro", "BarIconUpdater: planning " + n + " alarms");
+				//Log.d("Minidoro", "BarIconUpdater: planning " + n + " alarms");
 				Intent i = new Intent(ctx, BarIconUpdater.class);
 
 				pIntent = PendingIntent.getBroadcast(ctx, 1, i, 0);
@@ -69,7 +67,7 @@ public class BarIconUpdater extends BroadcastReceiver
 	static void stop(Context ctx)
 	{
 		if (pIntent != null) {
-			Log.d("Minidoro", "BarIconUpdater: stopping alarms");
+			//Log.d("Minidoro", "BarIconUpdater: stopping alarms");
 			AlarmManager alarmManager = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
 			if (alarmManager != null)
 				alarmManager.cancel(pIntent);
@@ -95,7 +93,7 @@ public class BarIconUpdater extends BroadcastReceiver
 	@Override
 	public void onReceive(Context ctx, Intent i)
 	{
-		Log.d("Minidoro", "BarIconUpdater: updating notification at " + System.currentTimeMillis());
+		//Log.d("Minidoro", "BarIconUpdater: updating notification at " + System.currentTimeMillis());
 
 		long left = until - System.currentTimeMillis();
 
@@ -108,7 +106,7 @@ public class BarIconUpdater extends BroadcastReceiver
 		}
 		if (n <= 1) {
 			stop(ctx);
-			Log.d("Minidoro", "BarIconUpdater: notification updates ended");
+			//Log.d("Minidoro", "BarIconUpdater: notification updates ended");
 		}
 	}
 }

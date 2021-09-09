@@ -15,7 +15,7 @@ import android.os.IBinder;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
+////import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
@@ -63,7 +63,7 @@ public class PomodoroActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d("Minidoro", "PomodoroActivity is creating");
+		//Log.d("Minidoro", "PomodoroActivity is creating");
 
 		// Try to restore state from service
 		timerServiceIntent = new Intent(this, PomodoroService.class);
@@ -524,7 +524,7 @@ public class PomodoroActivity extends Activity
 	{
 		super.onPause();
 
-		Log.d("Minidoro", "Activity on pause");
+		//Log.d("Minidoro", "Activity on pause");
 
 		if (pomodoroContext != null) { // ignore events before initialization
 			if (!pomodoroState.stage.isWork) {
@@ -586,7 +586,7 @@ public class PomodoroActivity extends Activity
 	protected void onDestroy()
 	{
 		super.onDestroy();
-		Log.d("Minidoro", "Main activity is destroying");
+		//Log.d("Minidoro", "Main activity is destroying");
 
 		pomodoroState.deleteObserver(stateObserver);
 		ticker.stop();
@@ -711,7 +711,7 @@ public class PomodoroActivity extends Activity
 		private void initState()
 		{
 			// [5]
-			Log.d("Minidoro", "Restoring state from file");
+			//Log.d("Minidoro", "Restoring state from file");
 			pomodoroState = StateSaver.restoreState(PomodoroActivity.this);
 
 			// Through away old state (older then half day)
@@ -744,14 +744,14 @@ public class PomodoroActivity extends Activity
 		@Override
 		public void onServiceConnected(ComponentName n, IBinder binder)
 		{
-			Log.d("Minidoro", "TimerService connected");
+			//Log.d("Minidoro", "TimerService connected");
 			// That's the local service, we can cast its IBinder to a concrete class and directly access it
 			service = ((PomodoroService.TimerBinder) binder).getService();
 
 			// Trying to restore state from service or from persistent
 			if (pomodoroContext == null) {
 				pomodoroContext = service.getPomodoroContext();
-				Log.d("Minidoro", "Restoring context from service");
+				//Log.d("Minidoro", "Restoring context from service");
 
 				if (pomodoroContext == null)
 					initContext();
@@ -785,7 +785,7 @@ public class PomodoroActivity extends Activity
 		@Override
 		public void onServiceDisconnected(ComponentName name)
 		{
-			Log.d("Minidoro", "TimerService DISCONNECTED");
+			//Log.d("Minidoro", "TimerService DISCONNECTED");
 			service = null;
 		}
 	}

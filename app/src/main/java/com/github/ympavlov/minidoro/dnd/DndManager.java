@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
-import android.util.Log;
+//import android.util.Log;
 
 /**
  * [6] DnD mode handler. It chooses right strategy according to API version and granted app privileges
@@ -61,9 +61,9 @@ public class DndManager
 		} else {
 			writeStrategy = readStrategy = ringerModeManager;
 		}
-		Log.d("Minidoro", "Dnd write strategy chosen: " + writeStrategy);
-		Log.d("Minidoro", "Dnd read strategy chosen: " + readStrategy);
-		Log.d("Minidoro", "Dnd service class name: " + serviceReadClass);
+		//Log.d("Minidoro", "Dnd write strategy chosen: " + writeStrategy);
+		//Log.d("Minidoro", "Dnd read strategy chosen: " + readStrategy);
+		//Log.d("Minidoro", "Dnd service class name: " + serviceReadClass);
 	}
 
 	public void setNeeded(boolean needed)

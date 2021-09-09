@@ -3,7 +3,7 @@ package com.github.ympavlov.minidoro.dnd;
 import android.content.ContentResolver;
 import android.media.AudioManager;
 import android.provider.Settings;
-import android.util.Log;
+//import android.util.Log;
 
 /**
  * @author Yury Pavlov
@@ -41,7 +41,7 @@ public class RingerModeManager implements DndStrategy
 			} catch (Settings.SettingNotFoundException e) {
 				return DndMode.UNKNOWN;
 			}
-			Log.d("Minidoro", "zen_mode="+zenMode);
+			//Log.d("Minidoro", "zen_mode="+zenMode);
 			switch (zenMode) {
 				case 0:
 					return DndMode.NORMAL;
@@ -76,7 +76,7 @@ public class RingerModeManager implements DndStrategy
 	public void returnUserMode()
 	{
 		if (wasChanged) {
-			Log.d("Minidoro", "RingerMode return: " + audioManager.getRingerMode() + " -> " + userMode);
+			//Log.d("Minidoro", "RingerMode return: " + audioManager.getRingerMode() + " -> " + userMode);
 			audioManager.setRingerMode(userMode);
 			wasChanged = false;
 
@@ -91,7 +91,7 @@ public class RingerModeManager implements DndStrategy
 		int currMode = audioManager.getRingerMode();
 		if (currMode != mode) {
 			saveUserMode(currMode);
-			Log.d("Minidoro", "RingerMode change: " + currMode + " -> " + mode);
+			//Log.d("Minidoro", "RingerMode change: " + currMode + " -> " + mode);
 			audioManager.setRingerMode(mode);
 		}
 	}

@@ -55,7 +55,7 @@ public class DndModeServiceV23 extends Service implements DndModeService
 
 			saveUserMode();
 
-			Log.d("Minidoro", "Request filter: " + INTERRUPTION_FILTER_PRIORITY);
+			//Log.d("Minidoro", "Request filter: " + INTERRUPTION_FILTER_PRIORITY);
 			notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_PRIORITY);
 		}
 	}
@@ -64,7 +64,7 @@ public class DndModeServiceV23 extends Service implements DndModeService
 	public void returnUserMode()
 	{
 		if (isEnabled() && userFilter != INTERRUPTION_FILTER_UNKNOWN) {
-			Log.d("Minidoro", "Return user's filter: " + userFilter);
+			//Log.d("Minidoro", "Return user's filter: " + userFilter);
 			notificationManager.setInterruptionFilter(userFilter);
 			userFilter = INTERRUPTION_FILTER_UNKNOWN;
 		}

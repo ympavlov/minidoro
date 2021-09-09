@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
+//import android.util.Log;
 import com.github.ympavlov.minidoro.nofication.NotificationFactory;
 
 /**
@@ -46,7 +46,7 @@ public class PomodoroService extends Service
 
 		if (pomodoroContext.pomodoroState.stage.isWork) {
 			if (startedForeground) {
-				Log.d("Minidoro", "Stopping Timer Service. It's not needed when work");
+				//Log.d("Minidoro", "Stopping Timer Service. It's not needed when work");
 				if (Build.VERSION.SDK_INT > 5)
 					stopForeground(true);
 				stopSelf();
@@ -85,7 +85,7 @@ public class PomodoroService extends Service
 			startedForeground = true;
 		}
 		long until = pomodoroContext.pomodoroState.getUntilMillis();
-		Log.d("Minidoro", "Setting alarms up to " + until);
+		//Log.d("Minidoro", "Setting alarms up to " + until);
 		// [2a]
 		BarIconUpdater.setupNextAlarm(this, until, prefs.getDuration(pomodoroContext.pomodoroState.stage));
 		// [5]
@@ -112,7 +112,7 @@ public class PomodoroService extends Service
 	{
 		super.onDestroy();
 
-		Log.d("Minidoro", "TimerService is destroying");
+		//Log.d("Minidoro", "TimerService is destroying");
 
 		if (alarmManager != null && alarmIntent != null)
 			alarmManager.cancel(alarmIntent);
@@ -128,7 +128,7 @@ public class PomodoroService extends Service
 	@Override
 	public void onTaskRemoved(Intent rootIntent)
 	{
-		Log.d("Minidoro", "TimerService TaskRemoved");
+		//Log.d("Minidoro", "TimerService TaskRemoved");
 
 		if (pomodoroContext != null) {
 			pomodoroContext.dndManager.returnUserMode();
@@ -143,7 +143,7 @@ public class PomodoroService extends Service
 	@Override
 	public IBinder onBind(Intent intent)
 	{
-		Log.d("Minidoro", "TimerService bound");
+		//Log.d("Minidoro", "TimerService bound");
 		return mBinder;
 	}
 

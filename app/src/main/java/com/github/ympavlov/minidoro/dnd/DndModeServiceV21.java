@@ -29,7 +29,7 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 	@Override
 	public IBinder onBind(Intent intent)
 	{
-		Log.d("Minidoro", "DnDv21 service is bound by " + intent.getAction());
+		//Log.d("Minidoro", "DnDv21 service is bound by " + intent.getAction());
 		if (SERVICE_INTERFACE.equals(intent.getAction())) {
 			if (Build.VERSION.SDK_INT >= 23 && DndModeServiceV23.isEnabled(this)) { // As I could see: DndModeServiceV23.isEnabled is always TRUE here
 				return null;
@@ -77,7 +77,7 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 		if (isEnabled() && getCurrentInterruptionFilter() == INTERRUPTION_FILTER_ALL) {
 			saveUserMode();
 
-			Log.d("Minidoro", "Request filter: " + INTERRUPTION_FILTER_PRIORITY);
+			//Log.d("Minidoro", "Request filter: " + INTERRUPTION_FILTER_PRIORITY);
 			requestInterruptionFilter(INTERRUPTION_FILTER_PRIORITY);
 		}
 	}
@@ -86,7 +86,7 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 	public void returnUserMode()
 	{
 		if (isEnabled() && userFilter != 0) {
-			Log.d("Minidoro", "Return user's filter: " + userFilter);
+			//Log.d("Minidoro", "Return user's filter: " + userFilter);
 			requestInterruptionFilter(userFilter);
 			userFilter = 0; // INTERRUPTION_FILTER_UNKNOWN
 		}
@@ -96,7 +96,7 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 	{
 		if (isEnabled()) {
 			userFilter = getCurrentInterruptionFilter();
-			Log.d("Minidoro", "Save user's filter: " + userFilter);
+			//Log.d("Minidoro", "Save user's filter: " + userFilter);
 		}
 	}
 

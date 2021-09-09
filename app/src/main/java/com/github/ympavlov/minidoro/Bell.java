@@ -2,7 +2,7 @@ package com.github.ympavlov.minidoro;
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
 import com.github.ympavlov.minidoro.dnd.RingerModeManager;
 import com.github.ympavlov.minidoro.nofication.NotificationIcons;
 import com.github.ympavlov.minidoro.nofication.NotificationFactory;
@@ -56,7 +56,7 @@ public class Bell implements Observer
 			ringerModeManager.setLoudModeOn();
 		}
 
-		Log.d("Minidoro", "Notify");
+		//Log.d("Minidoro", "Notify");
 		notificationManager.notify(NOTIFICATION_ID, notificationFactory.createNotification(
 				ctx.getString(msg), ctx.getString(title), ctx.getString(msg),
 				NotificationIcons.getBreakIcon(state.stage.isWork ? NotificationIcons.NPARTS : 0),

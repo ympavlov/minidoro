@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/privacy.html" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src" charset="UTF-8" />
   </component>
 </project>

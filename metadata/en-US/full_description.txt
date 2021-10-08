@@ -1,4 +1,4 @@
-Minidoro is a very minimalistic but reliable Pomodoro® Technique timer
+Minidoro is a very minimalist but reliable Pomodoro® Technique timer
 
 Pomodoro® Technique is extremely simple but efficient time management technique developed by Francesco Cirillo.
 
@@ -17,7 +17,7 @@ That's very simple:
 
 The Minidoro app may help you in Pomodoro® Technique adoption! Minidoro has:
 <ul>
-<li>Minimalistic user interface: only countdown screen with big digits, it's on all the time while timer's on
+<li>Minimalist user interface: only countdown screen with big digits, it's on all the time while timer's on
 <li>See only how much time left, no other distractions
 <li>It may turn Do-not-Disturb Mode in your device, no other apps will distract you
 <li>You may count your distractions, by yourself or by outside

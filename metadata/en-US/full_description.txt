@@ -8,9 +8,9 @@ That's very simple:
 <ul>
 <li>You split your work for 25 minute intervals, separated by short break periods
 <li>In these 25 minute intervals try to focus on your work as much as possible, try to not distract yourself and to avoid other distractions
-<li>After a 25 minute interval ends take a 5 minute break. During the break do any other activities except for the previous work
-<li>Return to the work after a break (or not, if you've finished)
-<li>Take a long break about 10–30 minutes after every four work intervals
+<li>After a 25 minute interval take a 5 minute break. During this break do any other activities except for the previous work
+<li>Return to the work after the break (or not, if you've finished)
+<li>Take a long break about 10–30 minutes after every 4 work intervals
 </ul>
 
 <a href="http://www.pomodorotechnique.com/">Full Pomodoro® Technique description on the author's website</a>

@@ -8,7 +8,7 @@ Pomodoro® Technique — это простая, но крайне эффекти
 <ul>
 <li>Вы разбиваете вашу работу на 25-минутные интервалы, разделенные короткими перерывами.
 <li>В эти 25 минут максимально сосредотачиваетесь на деле, стараясь не отвлекаться.
-<li>После завершения 25-минутного интервала делаете перерыв около 5 минут, во время которого занимайтесь, чем угодно, кроме предыдущего дела.
+<li>После завершения 25-минутного интервала сделайте перерыв около 5 минут, во время которого занимайтесь, чем угодно, кроме предыдущего дела.
 <li>И после перерыва снова за дело!
 <li>После каждых четырех рабочих интервалов возьмите более длинный перерыв 10–30 минут.
 </ul>
@@ -34,10 +34,10 @@ Minidoro поможет вам в применений этой техники! 
 
 Установить Minidoro на Wear OS и подключите устройство на Wear OS в режиме отладки к компьютеру.
 
-После этог для Wear OS версии 2.2 (основанной на Android 9) и выше выполните команду: "adb shell cmd notification allow_listener com.github.ympavlov.minidoro/com.github.ympavlov.minidoro.dnd.DndModeServiceV21"
+После этого для Wear OS версии 2.2 (основанной на Android 9) и выше выполните команду: "adb shell cmd notification allow_listener com.github.ympavlov.minidoro/com.github.ympavlov.minidoro.dnd.DndModeServiceV21"
 
 Для более ранних версий Wear OS (основанных на Android 8.1 и нижу): "adb shell settings put secure enabled_notification_listeners com.google.android.wearable.app/com.google.android.clockwork.stream.NotificationCollectorService:com.github.ympavlov.minidoro/com.github.ympavlov.minidoro.dnd.DndModeServiceV21"
 
 
 
-Pomodoro® является зарегистрированным торговой маркой Francesco Cirillo. Это приложение не аффилировано с Francesco Cirillo.
+Pomodoro® является зарегистрированным торговой маркой Francesco Cirillo. Это приложение не связано с Francesco Cirillo.

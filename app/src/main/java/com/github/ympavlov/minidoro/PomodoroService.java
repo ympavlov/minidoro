@@ -47,8 +47,7 @@ public class PomodoroService extends Service
 		if (pomodoroContext.pomodoroState.stage.isWork) {
 			if (startedForeground) {
 				//Log.d("Minidoro", "Stopping Timer Service. It's not needed when work");
-				if (Build.VERSION.SDK_INT > 5)
-					stopForeground(true);
+				stopForeground(true);
 				stopSelf();
 				startedForeground = false;
 			}
@@ -77,11 +76,7 @@ public class PomodoroService extends Service
 					BarIconUpdater.getIconsLeft(left)
 			);
 
-			if (Build.VERSION.SDK_INT > 5)
-				startForeground(Bell.NOTIFICATION_ID, n);
-			else
-				notificationManager.notify(Bell.NOTIFICATION_ID, n);
-
+			startForeground(Bell.NOTIFICATION_ID, n);
 			startedForeground = true;
 		}
 		long until = pomodoroContext.pomodoroState.getUntilMillis();

@@ -505,18 +505,17 @@ public class PomodoroActivity extends Activity
 	// Other event handlers
 	//
 
-	// @Override in API >= 5
+	@Override
 	public void onBackPressed()
 	{
 		if (!pomodoroState.isTimerOn() && pomodoroState.works > 0)
 			askStopAndQuit();
-		else if (pomodoroState.isTimerOn() && pomodoroState.stage.isWork) {
+		else if (pomodoroState.isTimerOn() && pomodoroState.stage.isWork)
 			askStopWork();
-		} else /*break*/ if (Build.VERSION.SDK_INT >= 5) { // onBackPressed targetApi=5
+		else
 			// Will cause onPause, so TimerService will start and no data will be lost
 			// After a break the user may decide to continue or not
 			super.onBackPressed();
-		}
 	}
 
 	@Override

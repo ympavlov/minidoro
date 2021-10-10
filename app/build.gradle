@@ -1,16 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 26
+	compileSdkVersion 31
 	buildToolsVersion "28.0.3"
 	defaultConfig {
 		applicationId "com.github.ympavlov.minidoro"
 		minSdkVersion 14
-		// compromise targetSdkVersion 14 to enable good appearance and old-style menu button (because new-style button'd be hidden with app bar)
-		//noinspection ExpiredTargetSdkVersion
-		targetSdkVersion 14
-		versionCode 10
-		versionName "1.0"
+		targetSdkVersion 31
+		versionCode 15
+		versionName "1.5"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 	compileOptions {

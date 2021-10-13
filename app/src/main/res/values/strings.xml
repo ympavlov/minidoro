@@ -65,4 +65,7 @@
 	<string name="prefOverrideSilent">Override Silent Mode</string>
 	<string name="prefOverrideSilentOn">Play sound even in silent/vibrate modes</string>
 	<string name="prefOverrideSilentOff">Don\'t play sound in silent/vibrate modes</string>
+
+	<string name="prefPrivacyPolicy">Privacy Policy</string>
+	<string name="prefPrivacyPolicyPage">Privacy Policy Page</string>
 </resources>

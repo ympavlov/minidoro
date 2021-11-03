@@ -1,0 +1,2 @@
+* Fixed background wake up in Android 10
+* Bug fixes

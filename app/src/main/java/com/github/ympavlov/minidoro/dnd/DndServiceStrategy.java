@@ -43,15 +43,32 @@ public class DndServiceStrategy implements ServiceConnection, DndStrategy
 	}
 
 	@Override
-	public void setDndModeOn() { service.priorityModeOn(); }
+	public void setDndModeOn()
+	{
+		if (service != null)    // not connected yet
+			service.priorityModeOn();
+	}
 
 	@Override
-	public void returnUserMode() { service.returnUserMode(); }
+	public void returnUserMode()
+	{
+		if (service != null)    // not connected yet
+			service.returnUserMode();
+	}
 
 	@Override
-	public DndMode getDndMode() { return service.getDnDMode(); }
+	public DndMode getDndMode()
+	{
+		if (service == null)    // not connected yet
+			return null;
+		return service.getDnDMode();
+	}
 
 	public String accessSettings() { return service.accessSettings(); }
 
-	public boolean isEnabled() { return service.isEnabled(); }
+	public boolean isEnabled() {
+		if (service == null)    // not connected yet
+			return false;
+		return service.isEnabled();
+	}
 }

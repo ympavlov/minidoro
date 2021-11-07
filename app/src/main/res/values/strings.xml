@@ -68,4 +68,6 @@
 
 	<string name="prefPrivacyPolicy">Privacy Policy</string>
 	<string name="prefPrivacyPolicyPage">Privacy Policy Page</string>
+
+	<string name="notifChannelName">Minidoro notifications</string>
 </resources>

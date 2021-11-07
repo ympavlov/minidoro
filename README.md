@@ -1,7 +1,7 @@
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid"
     height="80">](https://f-droid.org/packages/com.github.ympavlov.minidoro)
 
-Minidoro is a minimalistic Pomodoro® Technique timer app
+Minidoro is a minimalist Pomodoro® Technique timer app
 
 [Pomodoro® Technique](http://www.pomodorotechnique.com/) is an extremely simple but efficient time management technique
 

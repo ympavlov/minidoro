@@ -71,4 +71,6 @@
 
 	<string name="prefPrivacyPolicy">Политика конфиденциальности</string>
 	<string name="prefPrivacyPolicyPage">Страница политики конфиденциальности</string>
+
+	<string name="notifChannelName">Уведомления от Minidoro</string>
 </resources>

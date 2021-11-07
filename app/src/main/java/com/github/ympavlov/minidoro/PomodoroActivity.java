@@ -513,9 +513,8 @@ public class PomodoroActivity extends Activity
 		else if (pomodoroState.isTimerOn() && pomodoroState.stage.isWork)
 			askStopWork();
 		else
-			// Will cause onPause, so TimerService will start and no data will be lost
-			// After a break the user may decide to continue or not
-			super.onBackPressed();
+			// Hide the activity, but not destroy. If the activity destroyed its alarm intent will be ignored in API 29+
+			moveTaskToBack(true);
 	}
 
 	@Override

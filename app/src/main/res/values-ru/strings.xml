@@ -68,4 +68,6 @@
 	<string name="prefOverrideSilent">Игнорировать беззвучный режим</string>
 	<string name="prefOverrideSilentOn">Играть мелодию даже в беззвучном режиме/только вибрации</string>
 	<string name="prefOverrideSilentOff">Не играть мелодию в беззвучном режиме/только вибрации</string>
+
+	<string name="notifChannelName">Уведомления от Minidoro</string>
 </resources>

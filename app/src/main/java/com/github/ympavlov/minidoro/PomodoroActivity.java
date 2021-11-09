@@ -2,6 +2,7 @@ package com.github.ympavlov.minidoro;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.*;
@@ -77,6 +78,9 @@ public class PomodoroActivity extends Activity
 		// Customize view
 		updateSizesUponScreenMetrics();
 		setButtonTheme();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+			setTaskDescription(new ActivityManager.TaskDescription(getString(R.string.appName)));
 
 		prefs = new AppPreferences(this, getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
 

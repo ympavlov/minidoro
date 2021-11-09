@@ -1,5 +1,6 @@
 package com.github.ympavlov.minidoro;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.*;
 import android.os.Build;
@@ -21,6 +22,9 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+			setTaskDescription(new ActivityManager.TaskDescription(getString(R.string.preferences)));
 
 		addPreferencesFromResource(R.xml.preferences);
 

@@ -10,8 +10,8 @@ android {
 		// compromise targetSdkVersion 11 to enable good appearance and old-style menu button (because new-style button'd be hidden with app bar)
 		//noinspection ExpiredTargetSdkVersion
 		targetSdkVersion 11
-		versionCode 16
-		versionName "1.6"
+		versionCode 19
+		versionName "1.9"
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8

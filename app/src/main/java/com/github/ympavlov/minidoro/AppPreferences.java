@@ -31,22 +31,29 @@ public class AppPreferences implements RingtoneProvider
 		minidoroRingtone = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ context.getPackageName() + "/" + R.raw.darkjazz;
 	}
 
+	private static int parsePositive(String s, int def)
+	{
+		try {
+			int i = Integer.parseInt(s);
+			return i > 0 ? i : def;
+		} catch (NumberFormatException e) {
+			return def;
+		}
+	}
+
 	public int getDuration(Stage s)
 	{
-		String val = p.getString(s.durationPref, Integer.toString(s.defaultDuration));
-		if ("".equals(val) || "0".equals(val))
-			return s.defaultDuration;
-		return Integer.parseInt(val);
+		return parsePositive(
+				p.getString(s.durationPref, ""),
+				s.defaultDuration
+		);
 	}
 
 	public boolean isLongBreaksOn() { return getDuration(BREAK) != getDuration(LONG_BREAK); }
 
 	public int getLongBreaksPeriodicity()
 	{
-		String val = p.getString(LONG_BREAK_PERIODICITY_KEY, "4");
-		if ("".equals(val) || "0".equals(val))
-			return 4;
-		return Integer.parseInt(val);
+		return parsePositive(p.getString(LONG_BREAK_PERIODICITY_KEY, "4"), 4);
 	}
 
 	public boolean isDndModeOn() { return p.getBoolean(DND_MODE_KEY, false); }

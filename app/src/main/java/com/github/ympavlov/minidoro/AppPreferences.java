@@ -24,11 +24,11 @@ public class AppPreferences implements RingtoneProvider
 	private final SharedPreferences p;
 	private final String minidoroRingtone;
 
-	public AppPreferences(Context context, SharedPreferences p)
+	public AppPreferences(String packageName, SharedPreferences p)
 	{
 		this.p = p;
 		// The Minidoro sound is quieter than regular sounds
-		minidoroRingtone = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ context.getPackageName() + "/" + R.raw.darkjazz;
+		minidoroRingtone = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ packageName + "/" + R.raw.darkjazz;
 	}
 
 	private static int parsePositive(String s, int def)

@@ -78,7 +78,7 @@ public class PomodoroActivity extends Activity
 		updateSizesUponScreenMetrics();
 		setButtonTheme();
 
-		prefs = new AppPreferences(this, getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
+		prefs = new AppPreferences(getPackageName(), getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
 
 		notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

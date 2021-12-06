@@ -25,7 +25,7 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
 		addPreferencesFromResource(R.xml.preferences);
 
 		prefs = getPreferenceScreen().getSharedPreferences();
-		appPrefs = new AppPreferences(this, prefs);
+		appPrefs = new AppPreferences(getPackageName(), prefs);
 
 		TrimLeadingZerosTextWatcher w = new TrimLeadingZerosTextWatcher();
 		w.assignToPreference(Stage.WORK.durationPref);

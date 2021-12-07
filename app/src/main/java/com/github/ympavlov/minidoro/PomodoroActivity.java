@@ -82,7 +82,7 @@ public class PomodoroActivity extends Activity
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 			setTaskDescription(new ActivityManager.TaskDescription(getString(R.string.appName)));
 
-		prefs = new AppPreferences(this, getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
+		prefs = new AppPreferences(getPackageName(), getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
 
 		notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

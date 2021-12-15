@@ -40,37 +40,6 @@
 			android:title="@string/prefLongBreakPeriodicity" />
 	</PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/prefGroupTimer">
-		<EditTextPreference
-			android:key="workDuration"
-			android:dialogTitle="@string/prefWorkDurationD"
-			android:inputType="numberDecimal"
-			android:persistent="true"
-			android:defaultValue="25"
-			android:title="@string/prefWorkDuration" />
-		<EditTextPreference
-			android:key="breakDuration"
-			android:dialogTitle="@string/prefBreakDurationD"
-			android:inputType="numberDecimal"
-			android:persistent="true"
-			android:defaultValue="5"
-			android:title="@string/prefBreakDuration" />
-		<EditTextPreference
-			android:key="longBreakDuration"
-			android:dialogTitle="@string/prefLongBreakDurationD"
-			android:inputType="numberDecimal"
-			android:persistent="true"
-			android:defaultValue="15"
-			android:title="@string/prefLongBreakDuration" />
-		<EditTextPreference
-			android:key="longBreakPeriodicity"
-			android:dialogTitle="@string/prefLongBreakPeriodicityD"
-			android:inputType="numberDecimal"
-			android:persistent="true"
-			android:defaultValue="4"
-			android:title="@string/prefLongBreakPeriodicity" />
-	</PreferenceCategory>
-
 	<PreferenceCategory android:title="@string/prefGroupNotification">
 		<CheckBoxPreference
 			android:key="dndMode"

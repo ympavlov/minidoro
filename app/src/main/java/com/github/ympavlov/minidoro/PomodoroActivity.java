@@ -526,6 +526,7 @@ public class PomodoroActivity extends Activity
 
 		if (pomodoroContext != null) { // ignore events before initialization
 			if (!pomodoroState.stage.isWork) {
+				// TODO: dismissState placed in PomodoroService, I think saveState should be bound with it
 				if (pomodoroState.works > 0) // [5]
 					StateSaver.saveState(this, pomodoroState);
 

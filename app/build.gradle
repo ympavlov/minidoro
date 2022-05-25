@@ -47,8 +47,8 @@ android {
 }
 
 dependencies {
-	testImplementation 'junit:junit:4.+'
-	testImplementation 'org.mockito:mockito-core:4.1.+'
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.mockito:mockito-core:4.1.0'
 }
 
 android.applicationVariants.all { variant ->

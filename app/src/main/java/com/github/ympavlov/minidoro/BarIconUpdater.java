@@ -52,7 +52,7 @@ public class BarIconUpdater extends BroadcastReceiver
 				//Log.d("Minidoro", "BarIconUpdater: planning " + n + " alarms");
 				Intent i = new Intent(ctx, BarIconUpdater.class);
 
-				pIntent = PendingIntent.getBroadcast(ctx, 1, i, 0);
+				pIntent = PendingIntent.getBroadcast(ctx, 1, i, PendingIntent.FLAG_IMMUTABLE);
 
 				// I think we've no need for exact alarm
 				// Min alarm interval is 1 minute. So we don't need repeating if we have less than 2 minutes

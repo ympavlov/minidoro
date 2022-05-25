@@ -86,7 +86,7 @@ public class PomodoroService extends Service
 		// [5]
 		if (alarmIntent == null) {
 			Intent i = new Intent(this, PomodoroActivity.class);
-			alarmIntent = PendingIntent.getActivity(this, 1, i, 0);
+			alarmIntent = PendingIntent.getActivity(this, 1, i, PendingIntent.FLAG_IMMUTABLE);
 			// We've no need for exact alarm because we do only one alarm, it'll not be batched (see doc)
 			if (Build.VERSION.SDK_INT < 23)
 				alarmManager.set(AlarmManager.RTC_WAKEUP, until, alarmIntent);

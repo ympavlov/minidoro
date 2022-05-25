@@ -1,5 +1,6 @@
 package com.github.ympavlov.minidoro.nofication;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -30,13 +31,14 @@ public abstract class NotificationFactory
 		return new NotificationFactoryV4(context, activity, ringtoneProvider);
 	}
 
+	@SuppressLint("InlinedApi")
 	protected NotificationFactory(Context ctx, Class<? extends Activity> activity, RingtoneProvider ringtoneProvider)
 	{
 		context = ctx;
 		this.ringtoneProvider = ringtoneProvider;
 
 		Intent i = new Intent(ctx, activity);
-		pendingIntent = PendingIntent.getActivity(ctx, 1, i, PendingIntent.FLAG_UPDATE_CURRENT);
+		pendingIntent = PendingIntent.getActivity(ctx, 1, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 	}
 
 	protected PendingIntent getPendingIntent() { return pendingIntent; }

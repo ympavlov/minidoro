@@ -72,7 +72,7 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 	}
 
 	@Override
-	public void priorityModeOn()
+	public void setPriorityModeOn()
 	{
 		if (isEnabled() && getCurrentInterruptionFilter() == INTERRUPTION_FILTER_ALL) {
 			saveUserMode();
@@ -109,7 +109,8 @@ public class DndModeServiceV21 extends NotificationListenerService implements Dn
 			case INTERRUPTION_FILTER_ALL:
 				return NORMAL;
 			case INTERRUPTION_FILTER_PRIORITY:
-				return PRIORITY;
+            case INTERRUPTION_FILTER_ALARMS:
+				return PRIORITY_ALARMS;
 		}
 		return SILENT;
 	}

@@ -8,8 +8,8 @@ public interface DndStrategy
 
 	enum DndMode
 	{
-		SILENT /*only alarms or no sounds at all*/,
-		PRIORITY /*important notifications INCLUDING OURS*/,
+		SILENT /*no sounds at all*/,
+		PRIORITY_ALARMS /*important notifications or alarms only (ours is alarm!)*/,
 		NORMAL,
 		UNKNOWN
 	}

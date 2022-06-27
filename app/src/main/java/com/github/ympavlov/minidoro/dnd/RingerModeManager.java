@@ -46,7 +46,7 @@ public class RingerModeManager implements DndStrategy
 				case 0:
 					return DndMode.NORMAL;
 				case 1:
-					return DndMode.PRIORITY;
+					return DndMode.PRIORITY_ALARMS;
 			}
 			return DndMode.SILENT;
 		}
@@ -61,7 +61,7 @@ public class RingerModeManager implements DndStrategy
 
 		// There's a very tricky link between DnD mode and ringer mode: getRingerMode may return silent while there's dnd in priority or alarms even if it's in vibrate mode
 		// So don't deal with priority mode here to not make user sad
-		if (m != null && m != DndMode.PRIORITY) {
+		if (m != null && m != DndMode.PRIORITY_ALARMS) {
 			setMode(AudioManager.RINGER_MODE_NORMAL);
 		}
 	}

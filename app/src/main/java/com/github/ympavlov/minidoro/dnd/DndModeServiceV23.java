@@ -49,7 +49,7 @@ public class DndModeServiceV23 extends Service implements DndModeService
 	}
 
 	@Override
-	public void priorityModeOn()
+	public void setPriorityModeOn()
 	{
 		if (isEnabled() && (getDnDMode() == DndMode.NORMAL || getDnDMode() == DndMode.UNKNOWN)) {
 
@@ -79,8 +79,9 @@ public class DndModeServiceV23 extends Service implements DndModeService
 		switch (notificationManager.getCurrentInterruptionFilter()) {
 			case INTERRUPTION_FILTER_ALL:
 				return DndMode.NORMAL;
-			case INTERRUPTION_FILTER_PRIORITY:
-				return DndMode.PRIORITY;
+            case INTERRUPTION_FILTER_PRIORITY:
+            case INTERRUPTION_FILTER_ALARMS:
+				return DndMode.PRIORITY_ALARMS;
 			case INTERRUPTION_FILTER_UNKNOWN:
 				return DndMode.UNKNOWN;
 		}

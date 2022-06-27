@@ -4,7 +4,7 @@ import android.os.Binder;
 
 public interface DndModeService
 {
-	void priorityModeOn();
+	void setPriorityModeOn();
 	void returnUserMode();
 	DndStrategy.DndMode getDnDMode();
 	String accessSettings();

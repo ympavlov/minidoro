@@ -1,0 +1,1 @@
+* Fix disabling DnD when override silent is on

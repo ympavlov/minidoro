@@ -46,7 +46,7 @@ public class DndServiceStrategy implements ServiceConnection, DndStrategy
 	public void setDndModeOn()
 	{
 		if (service != null)    // not connected yet
-			service.priorityModeOn();
+			service.setPriorityModeOn();
 	}
 
 	@Override

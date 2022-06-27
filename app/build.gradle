@@ -31,9 +31,7 @@ android {
 		}
 	}
 	tasks.withType(JavaCompile) {
-		configure(options) {
-			options.compilerArgs << '-Xlint:deprecation'
-		}
+        options.compilerArgs << '-Xlint:deprecation'
 	}
 	buildscript {
 		configurations.all {

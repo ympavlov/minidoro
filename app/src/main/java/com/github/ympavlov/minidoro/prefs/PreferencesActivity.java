@@ -1,31 +1,50 @@
-package com.github.ympavlov.minidoro;
+package com.github.ympavlov.minidoro.prefs;
 
 import android.app.AlertDialog;
 import android.content.*;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import com.github.ympavlov.minidoro.R;
+import com.github.ympavlov.minidoro.Stage;
 import com.github.ympavlov.minidoro.dnd.DndServiceStrategy;
+import com.github.ympavlov.minidoro.nofication.NotificationFactory;
 
 @SuppressWarnings("deprecation") // Using PreferenceActivity for compatibility with APIs 4–11. Not PreferenceFragment. It's too small to Fragment would be useful
 public class PreferencesActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener
 {
 	private SharedPreferences prefs;
-	private AppPreferences appPrefs;
-	private DndServiceStrategy dndServiceConnection;
+    private AppPreferences appPrefs;
+    private DndServiceStrategy dndServiceConnection;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
-		addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.timer_preferences);
+        addPreferencesFromResource(R.xml.notification_preferences);
 
 		prefs = getPreferenceScreen().getSharedPreferences();
-		appPrefs = new AppPreferences(getPackageName(), prefs);
+		appPrefs = new AppPreferences(prefs);
+        NotificationPreferences notificationPreferences = NotificationFactory.getChannelRingtoneProvider(this, appPrefs.getNotificationPreferences(getPackageName()));
+
+        if (!notificationPreferences.isDirectChangeAvailable()) {
+            CheckBoxPreference minidoroRingtonePref = (CheckBoxPreference) findPreference(appPrefs.USE_MINIDORO_RINGTONE_KEY);
+            minidoroRingtonePref.setEnabled(false);
+            minidoroRingtonePref.setPersistent(false);
+            minidoroRingtonePref.setChecked(notificationPreferences.isRingtoneDefault());
+            findPreference(appPrefs.RINGTONE_KEY).setEnabled(false);
+        } else {
+            Preference chanelPrefs = findPreference(appPrefs.CHANNEL_KEY);
+            if (chanelPrefs != null) {
+                chanelPrefs.setEnabled(false);
+            }
+        }
 
 		TrimLeadingZerosTextWatcher w = new TrimLeadingZerosTextWatcher();
 		w.assignToPreference(Stage.WORK.durationPref);
@@ -62,15 +81,18 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String keys)
 	{
-		if (keys.contains(appPrefs.USE_MINIDORO_RINGTONE_KEY)) {
-			boolean minidoroRingtone = prefs.getBoolean(appPrefs.USE_MINIDORO_RINGTONE_KEY, true);
+        if (keys.contains(appPrefs.USE_MINIDORO_RINGTONE_KEY)) {
+            Preference minidoroRingtonePref = findPreference(appPrefs.USE_MINIDORO_RINGTONE_KEY);
+            if (minidoroRingtonePref.isEnabled()) {
+                boolean minidoroRingtone = prefs.getBoolean(appPrefs.USE_MINIDORO_RINGTONE_KEY, true);
 
-			findPreference(appPrefs.USE_MINIDORO_RINGTONE_KEY).setSummary(
-					getString(minidoroRingtone ?
-					          R.string.prefMinidoroRingtoneOn : R.string.prefMinidoroRingtoneOff));
+                minidoroRingtonePref.setSummary(
+                        getString(minidoroRingtone ?
+                                  R.string.prefMinidoroRingtoneOn : R.string.prefMinidoroRingtoneOff));
 
-			findPreference(appPrefs.RINGTONE_KEY).setEnabled(!minidoroRingtone);
-		}
+                findPreference(appPrefs.RINGTONE_KEY).setEnabled(!minidoroRingtone);
+            }
+        }
 
 		// [4a]
 		if (keys.contains(appPrefs.OVERRIDE_SILENT_MODE_KEY)) {

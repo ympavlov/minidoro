@@ -33,7 +33,7 @@ public class Bell implements Observer
         handler = new Handler(ctx.getMainLooper());
 		this.ringerModeManager = ringerModeManager;
 		notificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-		notificationFactory = NotificationFactory.getFactory(ctx, PomodoroActivity.class, prefs);
+		notificationFactory = NotificationFactory.getFactory(ctx, PomodoroActivity.class, NotificationFactory.getChannelRingtoneProvider(ctx, prefs.getNotificationPreferences(ctx.getPackageName())));
 	}
 
 	@Override

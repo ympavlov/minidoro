@@ -7,8 +7,10 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import com.github.ympavlov.minidoro.nofication.NotificationFactory;
 import com.github.ympavlov.minidoro.nofication.NotificationIcons;
+import com.github.ympavlov.minidoro.nofication.ChannelDescriptor;
 
 /**
  * [2a] Updates notification icon on status bar and lock screen. Uses alarms to operate in doze mode
@@ -30,9 +32,9 @@ public class BarIconUpdater extends BroadcastReceiver
 	 * @param leftMillis time left in minutes
 	 * @return number less than NotificationIcons.NPARTS (might be negative)
 	 */
-	static int getIconsLeft(long leftMillis)
+	static int calcIconsLeft(long leftMillis)
 	{
-		return Math.min((int) Math.ceil((float) leftMillis / periodMillis), NotificationIcons.NPARTS);
+		return Math.min((int) Math.ceil((double) leftMillis / periodMillis), NotificationIcons.NPARTS);
 	}
 
 	static void setupNextAlarm(Context ctx, long untilMillis, int durationMinutes)
@@ -43,8 +45,8 @@ public class BarIconUpdater extends BroadcastReceiver
 		setDuration(durationMinutes);
 		until = untilMillis;
 		long leftMillis = untilMillis - System.currentTimeMillis();
-		int n = getIconsLeft(leftMillis)
-				- 1; // Since last icon update will be made by Bell
+		int n = calcIconsLeft(leftMillis)
+				- 1; // Because last icon update should be made by Bell
 
 		if (n > 0) {
 			AlarmManager alarmManager = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
@@ -59,7 +61,7 @@ public class BarIconUpdater extends BroadcastReceiver
 				if (leftMillis > 2 * TimeTicker.MINUTE && n > 1)
 					alarmManager.setRepeating(AlarmManager.RTC, untilMillis - periodMillis * n, Math.max(periodMillis, TimeTicker.MINUTE), pIntent);
 				else	// We need to make only one alarm. Let's choose proper time
-					alarmManager.set(AlarmManager.RTC, untilMillis - periodMillis * (int) Math.ceil((float) n/2), pIntent);
+					alarmManager.set(AlarmManager.RTC, untilMillis - periodMillis * (int) Math.ceil((double) n/2), pIntent);
 			}
 		}
 	}
@@ -77,17 +79,18 @@ public class BarIconUpdater extends BroadcastReceiver
 
 	private static int millisToMinutes(float millis) { return Math.round(millis / TimeTicker.MINUTE); }
 
-	static Notification createForegroundNotification(Context ctx, NotificationFactory notificationFactory, String ticker, long leftMillis, int icon)
+	static Notification createForegroundNotification(Context ctx, String ticker, long leftMillis, int icon)
 	{
 		int leftMinutes = millisToMinutes(leftMillis);
 		String title = ctx.getResources().getQuantityString(R.plurals.barLeftMinutes, leftMinutes, leftMinutes);
-		return notificationFactory.createNotification(
-				ticker != null ? ticker : title,
-				title,
-				ctx.getString(R.string.barBreakWish),
-				NotificationIcons.getBreakIcon(icon),
-				false
-		);
+		return NotificationFactory.getFactory(ctx, PomodoroActivity.class, new BarIconChannelDescriptor(ctx))
+                .createNotification(
+                        ticker != null ? ticker : title,
+				        title,
+				        ctx.getString(R.string.barBreakWish),
+				        NotificationIcons.getBreakIcon(icon),
+				        false
+                );
 	}
 
 	@Override
@@ -97,16 +100,33 @@ public class BarIconUpdater extends BroadcastReceiver
 
 		long left = until - System.currentTimeMillis();
 
-		int n = getIconsLeft(left);
+		int n = calcIconsLeft(left);
 		if (n > 0) {
 			NotificationManager notificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-			NotificationFactory notificationFactory = NotificationFactory.getFactory(ctx, PomodoroActivity.class, null);
 			if (notificationManager != null)
-				notificationManager.notify(Bell.NOTIFICATION_ID, createForegroundNotification(ctx, notificationFactory, null, left, n));
+				notificationManager.notify(Bell.NOTIFICATION_ID, createForegroundNotification(ctx, null, left, n));
 		}
 		if (n <= 1) {
 			stop(ctx);
 			//Log.d("Minidoro", "BarIconUpdater: notification updates ended");
 		}
 	}
+
+	private static class BarIconChannelDescriptor implements ChannelDescriptor
+    {
+        private final ChannelInfo info;
+
+        private BarIconChannelDescriptor(Context ctx)
+        {
+            info = new ChannelDescriptor.ChannelInfo(
+                    ctx.getResources().getString(R.string.nChannelStatusBarId),
+                    ctx.getResources().getString(R.string.nChannelStatusBarName)
+            );
+        }
+
+        public ChannelInfo getChannelInfo() { return info; }
+
+        @Override
+        public Uri getRingtone() { return null; }
+    }
 }

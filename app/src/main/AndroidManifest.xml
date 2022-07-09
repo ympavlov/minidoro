@@ -27,7 +27,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".PreferencesActivity"
+			android:name=".prefs.PreferencesActivity"
 			android:exported="false"
 			android:label="@string/preferences">
 			<intent-filter>

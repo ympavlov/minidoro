@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 @TargetApi(4) // till 15
 public class NotificationFactoryV4 extends NotificationFactory
 {
-	protected NotificationFactoryV4(Context ctx, Class<? extends Activity> activityClass, RingtoneProvider ringtoneProvider)
+	protected NotificationFactoryV4(Context ctx, Class<? extends Activity> activityClass, ChannelDescriptor ringtoneProvider)
 	{
 		super(ctx, activityClass, ringtoneProvider);
 	}
@@ -29,7 +29,7 @@ public class NotificationFactoryV4 extends NotificationFactory
 		try { // we need setLatestEventInfo in elder APIs
 			@SuppressWarnings("JavaReflectionMemberAccess")
 			Method setInfoMethod = Notification.class.getMethod("setLatestEventInfo", Context.class, CharSequence.class, CharSequence.class, PendingIntent.class);
-			//n.setLatestEventInfo(context, title, text, pendingIntent);
+			//n.setLatestEventInfo(context, title, text, pendingIntent);o
 			setInfoMethod.invoke(n, context, title, text, getPendingIntent());
 		} catch (NoSuchMethodException e) {
 			Log.e("Minidoro", "NotificationFactoryV4: no setLatestEventInfo in SDK " + Build.VERSION.SDK_INT);
@@ -40,9 +40,10 @@ public class NotificationFactoryV4 extends NotificationFactory
 		}
 
 		n.flags |= Notification.FLAG_AUTO_CANCEL;
-		if (ringtoneProvider != null) {
+		Uri ringtone = ringtoneChannel.getRingtone();
+		if (ringtone != null) {
 			n.defaults = defaultFlags;
-			n.sound = Uri.parse(ringtoneProvider.getRingtone());
+			n.sound = ringtone;
 		}
 		return n;
 	}

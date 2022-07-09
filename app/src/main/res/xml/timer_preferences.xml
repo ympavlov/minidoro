@@ -1,0 +1,34 @@
+<!--suppress DeprecatedClassUsageInspection
+    Not using androidx PreferenceCategory & PreferenceScreen to support old devices -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/prefGroupTimer">
+    <EditTextPreference
+      android:key="workDuration"
+      android:dialogTitle="@string/prefWorkDurationD"
+      android:inputType="number"
+      android:persistent="true"
+      android:defaultValue="25"
+      android:title="@string/prefWorkDuration" />
+    <EditTextPreference
+      android:key="breakDuration"
+      android:dialogTitle="@string/prefBreakDurationD"
+      android:inputType="number"
+      android:persistent="true"
+      android:defaultValue="5"
+      android:title="@string/prefBreakDuration" />
+    <EditTextPreference
+      android:key="longBreakDuration"
+      android:dialogTitle="@string/prefLongBreakDurationD"
+      android:inputType="number"
+      android:persistent="true"
+      android:defaultValue="15"
+      android:title="@string/prefLongBreakDuration" />
+    <EditTextPreference
+      android:key="longBreakPeriodicity"
+      android:dialogTitle="@string/prefLongBreakPeriodicityD"
+      android:inputType="number"
+      android:persistent="true"
+      android:defaultValue="4"
+      android:title="@string/prefLongBreakPeriodicity" />
+  </PreferenceCategory>
+</PreferenceScreen>

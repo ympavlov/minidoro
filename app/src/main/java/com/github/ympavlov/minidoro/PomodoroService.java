@@ -8,7 +8,7 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 //import android.util.Log;
-import com.github.ympavlov.minidoro.nofication.NotificationFactory;
+import com.github.ympavlov.minidoro.prefs.AppPreferences;
 
 /**
  * TimerService [1]
@@ -26,8 +26,6 @@ public class PomodoroService extends Service
 	private PendingIntent alarmIntent;
 
 	private AppPreferences prefs;
-	private NotificationManager notificationManager;
-	private NotificationFactory notificationFactory;
 	private AlarmManager alarmManager;
 
 	PomodoroContext getPomodoroContext() { return pomodoroContext; }
@@ -37,10 +35,6 @@ public class PomodoroService extends Service
 		this.pomodoroContext = pomodoroContext;
 		this.prefs = prefs;
 
-		if (notificationManager == null) {
-			notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			notificationFactory = NotificationFactory.getFactory(getApplicationContext(), PomodoroActivity.class, null);
-		}
 		if (alarmManager == null)
 			alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
@@ -67,13 +61,12 @@ public class PomodoroService extends Service
 	void backgroundTimer()
 	{
 		if (!startedForeground) {
-			long left = pomodoroContext.pomodoroState.refresh();
+			long leftMillis = pomodoroContext.pomodoroState.refresh();
 			BarIconUpdater.setDuration(prefs.getDuration(pomodoroContext.pomodoroState.stage));
 			Notification n = BarIconUpdater.createForegroundNotification(this,
-					notificationFactory,
 					getString(R.string.barMinidoroNotifies),
-					left,
-					BarIconUpdater.getIconsLeft(left)
+					leftMillis,
+					BarIconUpdater.calcIconsLeft(leftMillis)
 			);
 
 			startForeground(Bell.NOTIFICATION_ID, n);

@@ -64,8 +64,13 @@
 	<string name="prefMinidoroRingtone">Мелодия Минидоро</string>
 	<string name="prefMinidoroRingtoneOn">Использовать мелодию Минидоро для уведомлений</string>
 	<string name="prefMinidoroRingtoneOff">Использовать выбранную мелодию для уведомлений</string>
-	<string name="prefRingtone">Мелодия уведомлений</string>
+	<string name="prefRingtone">Выбрать из списка</string>
+  <string name="prefChanel">Перенастройка уведомлений</string>
+  <string name="prefChanelSummary">Открыть настройки канала…</string>
 	<string name="prefOverrideSilent">Игнорировать беззвучный режим</string>
 	<string name="prefOverrideSilentOn">Играть мелодию даже в беззвучном режиме/только вибрации</string>
 	<string name="prefOverrideSilentOff">Не играть мелодию в беззвучном режиме/только вибрации</string>
+
+  <string name="nChannelBellName">Конец работы или перерыва</string>
+  <string name="nChannelStatusBarName">Фоновый таймер перерыва</string>
 </resources>

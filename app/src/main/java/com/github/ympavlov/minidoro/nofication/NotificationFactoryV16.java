@@ -9,10 +9,10 @@ import android.os.Build;
 import com.github.ympavlov.minidoro.R;
 
 @SuppressWarnings("deprecation")
-@TargetApi(16)
+@TargetApi(16) // till 29
 public class NotificationFactoryV16 extends NotificationFactory
 {
-	protected NotificationFactoryV16(Context ctx, Class<? extends Activity> activityClass, RingtoneProvider ringtoneProvider)
+	protected NotificationFactoryV16(Context ctx, Class<? extends Activity> activityClass, ChannelDescriptor ringtoneProvider)
 	{
 		super(ctx, activityClass, ringtoneProvider);
 	}
@@ -25,9 +25,10 @@ public class NotificationFactoryV16 extends NotificationFactory
 		b.setTicker(tickerText);
 		b.setContentTitle(title);
 		b.setContentText(text);
-		if (ringtoneProvider != null) {
+        Uri ringtone = ringtoneChannel.getRingtone();
+		if (ringtone != null) {
 			b.setDefaults(defaultFlags);
-			b.setSound(Uri.parse(ringtoneProvider.getRingtone()));
+			b.setSound(ringtone);
 		}
 		b.setAutoCancel(true);
 		b.setContentIntent(getPendingIntent());

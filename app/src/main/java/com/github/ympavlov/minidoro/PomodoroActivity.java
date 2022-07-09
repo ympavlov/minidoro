@@ -15,20 +15,23 @@ import android.os.IBinder;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-////import android.util.Log;
+//import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
 import android.widget.TextView;
 import com.github.ympavlov.minidoro.dnd.DndManager;
 import com.github.ympavlov.minidoro.dnd.RingerModeManager;
+import com.github.ympavlov.minidoro.prefs.AppPreferences;
+import com.github.ympavlov.minidoro.prefs.PreferencesActivity;
 
 import java.util.Observable;
 import java.util.Observer;
 
 /*
  * The main app class
- * Consists of presentation logic and set all interaction with PomodoroState
+ * Consists of presentation logic, initialization logic (in Initializer subcalss) and all interaction with PomodoroState
+ * (the state and this activity are heavily coupled by initial design)
  */
 public class PomodoroActivity extends Activity
 {
@@ -78,7 +81,7 @@ public class PomodoroActivity extends Activity
 		updateSizesUponScreenMetrics();
 		setButtonTheme();
 
-		prefs = new AppPreferences(getPackageName(), getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
+		prefs = new AppPreferences(getSharedPreferences(getPackageName() + AppPreferences.PREF_KEY, 0));
 
 		notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -526,7 +529,7 @@ public class PomodoroActivity extends Activity
 
 		if (pomodoroContext != null) { // ignore events before initialization
 			if (!pomodoroState.stage.isWork) {
-				// TODO: dismissState placed in PomodoroService, I think saveState should be bound with it
+				// TODO: dismissState placed in PomodoroService, I think saveState should be bound to it
 				if (pomodoroState.works > 0) // [5]
 					StateSaver.saveState(this, pomodoroState);
 
@@ -729,6 +732,7 @@ public class PomodoroActivity extends Activity
 		}
 		private void initContext()
 		{
+            //Log.d("Minidoro", "Building new context");
 			pomodoroContext = new PomodoroContext();
 
 			pomodoroContext.ringerModeManager = new RingerModeManager((AudioManager) getSystemService(Context.AUDIO_SERVICE), getContentResolver());
@@ -749,6 +753,7 @@ public class PomodoroActivity extends Activity
 
 			// Trying to restore state from service or from persistent
 			if (pomodoroContext == null) {
+                //Log.d("Minidoro", "Searching for context in the service");
 				pomodoroContext = service.getPomodoroContext();
 				//Log.d("Minidoro", "Restoring context from service");
 
@@ -761,7 +766,7 @@ public class PomodoroActivity extends Activity
 
 			pomodoroState.refresh();
 
-			// almost always would be NOT initialized (unless onServiceDisconnected happened)
+			// almost always should be NOT initialized here (unless onServiceDisconnected happened)
 			if (!isInitialized()) {
 				initActivity();
 

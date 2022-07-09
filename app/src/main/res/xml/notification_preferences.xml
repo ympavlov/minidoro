@@ -1,0 +1,29 @@
+<!--suppress DeprecatedClassUsageInspection
+    Not using androidx PreferenceCategory & PreferenceScreen to support old devices -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/prefGroupNotification">
+    <CheckBoxPreference
+      android:key="dndMode"
+      android:title="@string/prefDndMode"
+      android:defaultValue="false"
+      android:persistent="true" />
+    <CheckBoxPreference
+      android:key="minidoroRingtone"
+      android:title="@string/prefMinidoroRingtone"
+      android:defaultValue="true"
+      android:persistent="true" />
+    <RingtonePreference
+      android:key="ringtone"
+      android:ringtoneType="notification"
+      android:showDefault="true"
+      android:showSilent="true"
+      android:defaultValue="content://settings/system/notification_sound"
+      android:title="@string/prefRingtone"
+      android:persistent="true" />
+    <CheckBoxPreference
+      android:key="overrideSilent"
+      android:title="@string/prefOverrideSilent"
+      android:defaultValue="false"
+      android:persistent="true" />
+  </PreferenceCategory>
+</PreferenceScreen>

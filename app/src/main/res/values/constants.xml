@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="nChannelStatusBarId" tools:ignore="MissingTranslation">MinidoroReminder</string> <!-- This value is used since Minidoro 1.6 -->
+  <string name="nChannelBellId" tools:ignore="MissingTranslation">MinidoroBell</string>
+</resources>

@@ -1,8 +1,10 @@
 package com.github.ympavlov.minidoro;
 
+import com.github.ympavlov.minidoro.prefs.AppPreferences;
+
 public enum Stage
 {
-	// The colors are assumed to be colorblind-friendly. Also they are chosen so to be bright on the e-book "paper" screen
+	// The colors are assumed to be colorblindness-friendly. Also they are chosen so to be bright on an e-ink screen
 	WORK("workDuration", 25, 0xfff29268, true),
 	BREAK("breakDuration", 5, 0xff79f0dc, false),
 	LONG_BREAK("longBreakDuration", 15, 0xff79f0dc, false);

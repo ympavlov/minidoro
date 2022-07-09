@@ -60,9 +60,14 @@
 	<string name="prefDndModeComment">System setting change is required to use DnD Mode</string>
 	<string name="prefMinidoroRingtone">Minidoro Ringtone</string>
 	<string name="prefMinidoroRingtoneOn">Use Minidoro ringtone for notifications</string>
-	<string name="prefMinidoroRingtoneOff">Choose ringtone for notifications</string>
-	<string name="prefRingtone">Ringtone</string>
+	<string name="prefMinidoroRingtoneOff">Use chosen ringtone for notifications</string>
+  <string name="prefRingtone">Choose Ringtone</string>
+  <string name="prefChanel">Notification tuning</string>
+  <string name="prefChanelSummary">Open chanel settings…</string>
 	<string name="prefOverrideSilent">Override Silent Mode</string>
 	<string name="prefOverrideSilentOn">Play sound even in silent/vibrate modes</string>
 	<string name="prefOverrideSilentOff">Don\'t play sound in silent/vibrate modes</string>
+
+  <string name="nChannelBellName">Work and break endings</string>
+  <string name="nChannelStatusBarName">Background break timer</string>
 </resources>

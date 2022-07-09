@@ -46,6 +46,7 @@ public class Bell implements Observer
             ringerModeManager.returnUserMode();
         }
 
+		// Delay notification to make sure DnD be off
         handler.post(new Runnable() {
             @Override
             public void run()

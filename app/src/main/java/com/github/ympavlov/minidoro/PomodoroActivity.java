@@ -115,18 +115,16 @@ public class PomodoroActivity extends Activity
 	// WORK WITH VIEW
 	//
 
-	@SuppressLint("InlinedApi") // [3] In APIs >= 11 make buttons transparent, but selectable
+	@SuppressLint("InlinedApi") // [3] Make buttons transparent, but selectable (possible only in APIs >= 11)
 	private void setButtonTheme()
 	{
 		TypedValue outValue = new TypedValue();
 		getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 		if (outValue.resourceId != 0) {
-			findViewById(R.id.start).setBackgroundResource(outValue.resourceId);
-			findViewById(R.id.startSmall).setBackgroundResource(outValue.resourceId);
-			findViewById(R.id.stop).setBackgroundResource(outValue.resourceId);
-			findViewById(R.id.dashes).setBackgroundResource(outValue.resourceId);
-			findViewById(R.id.quotes).setBackgroundResource(outValue.resourceId);
-			findViewById(R.id.preferences).setBackgroundResource(outValue.resourceId);
+		    int[] allButtons = {R.id.start, R.id.startSmall, R.id.stop, R.id.dashes, R.id.quotes, R.id.preferences};
+		    for (int b : allButtons) {
+                findViewById(b).setBackgroundResource(outValue.resourceId);
+            }
 		}
 	}
 

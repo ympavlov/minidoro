@@ -1,4 +1,5 @@
 * Android 12 & 13 compatibility
-* Android 10+: new clean notification channels implementation (employed only in Android 11+ for testing, fallback used in Android 8–10 for a while)
-* Fixed "Not allowed to delete channel" crash after melody changed
+* Android 11+: new clean notification channels implementation (employed only in Android 11+ for testing, fallback used in Android 8–10 for a while)
+* Notification settings migrate to Preferences app (Android 8+)
+* Fixed "Not allowed to delete channel" crash after ringtone changed
 * Fix disabling DnD when override silent is on

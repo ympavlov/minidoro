@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.*;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
+import android.preference.*;
 import android.text.Editable;
 import android.text.TextWatcher;
 import com.github.ympavlov.minidoro.R;
@@ -26,24 +23,24 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
 	{
 		super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.timer_preferences);
-        addPreferencesFromResource(R.xml.notification_preferences);
+        addPreferencesFromResource(R.xml.preferences);
 
 		prefs = getPreferenceScreen().getSharedPreferences();
 		appPrefs = new AppPreferences(prefs);
+
         NotificationPreferences notificationPreferences = NotificationFactory.getChannelRingtoneProvider(this, appPrefs.getNotificationPreferences(getPackageName()));
 
-        if (!notificationPreferences.isDirectChangeAvailable()) {
+        if (notificationPreferences.isDirectChangeAvailable()) {
+            // No need for channel settings
+            ((PreferenceCategory) findPreference("notificationGroup"))
+                   .removePreference(getPreferenceManager().findPreference(appPrefs.CHANNEL_KEY));
+        } else {
+            // Disable all local settings, channel should be edited instead
             CheckBoxPreference minidoroRingtonePref = (CheckBoxPreference) findPreference(appPrefs.USE_MINIDORO_RINGTONE_KEY);
             minidoroRingtonePref.setEnabled(false);
             minidoroRingtonePref.setPersistent(false);
             minidoroRingtonePref.setChecked(notificationPreferences.isRingtoneDefault());
             findPreference(appPrefs.RINGTONE_KEY).setEnabled(false);
-        } else {
-            Preference chanelPrefs = findPreference(appPrefs.CHANNEL_KEY);
-            if (chanelPrefs != null) {
-                chanelPrefs.setEnabled(false);
-            }
         }
 
 		TrimLeadingZerosTextWatcher w = new TrimLeadingZerosTextWatcher();

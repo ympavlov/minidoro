@@ -6,16 +6,16 @@ public interface ChannelDescriptor
 {
 	Uri getRingtone();
 
-    ChannelInfo getChannelInfo();
+	ChannelInfo getChannelInfo();
 
 	class ChannelInfo
-    {
-        final String id;
-        final String name;
+	{
+		final String id;
+		final String name;
 
-        public ChannelInfo(String id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-    }
+		public ChannelInfo(String id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+	}
 }

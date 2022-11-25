@@ -21,7 +21,7 @@ public class AppPreferences
 	static final String DND_MODE_KEY = "dndMode";
 	static final String USE_MINIDORO_RINGTONE_KEY = "minidoroRingtone";
 	static final String RINGTONE_KEY = "ringtone";
-    static final String CHANNEL_KEY = "chanelPreferences";
+	static final String CHANNEL_KEY = "chanelPreferences";
 	static final String OVERRIDE_SILENT_MODE_KEY = "overrideSilent";
 
 	private final SharedPreferences sharedPreferences;
@@ -62,40 +62,40 @@ public class AppPreferences
 	public boolean overrideSilent() { return sharedPreferences.getBoolean(OVERRIDE_SILENT_MODE_KEY, false); }
 
 	public RingtoneSharedPreferences getNotificationPreferences(String packageName)
-    {
-        return new RingtoneSharedPreferences(packageName);
-    }
+	{
+		return new RingtoneSharedPreferences(packageName);
+	}
 
 	/*
 	 * Plain old mutable ringtone preferences before notification channels
 	 */
-    public class RingtoneSharedPreferences implements NotificationPreferences
-    {
-        public final String minidoroRingtoneStr;
-        public final Uri minidoroRingtone;
+	public class RingtoneSharedPreferences implements NotificationPreferences
+	{
+		public final String minidoroRingtoneStr;
+		public final Uri minidoroRingtone;
 
-        private RingtoneSharedPreferences(String packageName)
-        {
-            // The Minidoro sound is quieter than regular sounds
-            minidoroRingtoneStr = ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + packageName + "/" + R.raw.darkjazz;
-            minidoroRingtone = Uri.parse(minidoroRingtoneStr);
-        }
+		private RingtoneSharedPreferences(String packageName)
+		{
+		    // The Minidoro sound is quieter than regular sounds
+		    minidoroRingtoneStr = ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + packageName + "/" + R.raw.darkjazz;
+		    minidoroRingtone = Uri.parse(minidoroRingtoneStr);
+		}
 
-        @Override
-        public ChannelInfo getChannelInfo() { return null; }
+		@Override
+		public ChannelInfo getChannelInfo() { return null; }
 
-        @Override
-        public Uri getRingtone()
-        {
-            return isRingtoneDefault() ?
-                   minidoroRingtone :
-                   Uri.parse(sharedPreferences.getString(AppPreferences.RINGTONE_KEY, minidoroRingtoneStr));
-        }
+		@Override
+		public Uri getRingtone()
+		{
+		    return isRingtoneDefault() ?
+		           minidoroRingtone :
+		           Uri.parse(sharedPreferences.getString(AppPreferences.RINGTONE_KEY, minidoroRingtoneStr));
+		}
 
-        @Override
-        public boolean isRingtoneDefault() { return sharedPreferences.getBoolean(AppPreferences.USE_MINIDORO_RINGTONE_KEY, true); }
+		@Override
+		public boolean isRingtoneDefault() { return sharedPreferences.getBoolean(AppPreferences.USE_MINIDORO_RINGTONE_KEY, true); }
 
-        @Override
-        public boolean isDirectChangeAvailable() { return true; }
-    }
+		@Override
+		public boolean isDirectChangeAvailable() { return true; }
+	}
 }

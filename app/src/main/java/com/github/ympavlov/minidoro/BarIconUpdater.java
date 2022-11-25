@@ -24,17 +24,17 @@ public class BarIconUpdater extends BroadcastReceiver
 
 	static void setDuration(int durationMinutes)
 	{
-		periodMillis = TimeTicker.MINUTE * durationMinutes / NotificationIcons.NPARTS;
+		periodMillis = TimeTicker.MINUTE * durationMinutes / NotificationIcons.N_SLICES;
 	}
 
 	/**
 	 *
 	 * @param leftMillis time left in minutes
-	 * @return number less than NotificationIcons.NPARTS (might be negative)
+	 * @return number not greater than NotificationIcons.N_SLICES (might be negative)
 	 */
 	static int calcIconsLeft(long leftMillis)
 	{
-		return Math.min((int) Math.ceil((double) leftMillis / periodMillis), NotificationIcons.NPARTS);
+		return Math.min((int) Math.ceil((double) leftMillis / periodMillis), NotificationIcons.N_SLICES);
 	}
 
 	static void setupNextAlarm(Context ctx, long untilMillis, int durationMinutes)
@@ -83,14 +83,15 @@ public class BarIconUpdater extends BroadcastReceiver
 	{
 		int leftMinutes = millisToMinutes(leftMillis);
 		String title = ctx.getResources().getQuantityString(R.plurals.barLeftMinutes, leftMinutes, leftMinutes);
-		return NotificationFactory.getFactory(ctx, PomodoroActivity.class, new BarIconChannelDescriptor(ctx))
-                .createNotification(
-                        ticker != null ? ticker : title,
-				        title,
-				        ctx.getString(R.string.barBreakWish),
-				        NotificationIcons.getBreakIcon(icon),
-				        false
-                );
+		return NotificationFactory
+			          .getFactory(ctx, PomodoroActivity.class, new BarIconChannelDescriptor(ctx))
+			          .createNotification(
+			               ticker != null ? ticker : title,
+			               title,
+			               ctx.getString(R.string.barBreakWish),
+			               NotificationIcons.getBreakIcon(icon),
+			               false
+			          );
 	}
 
 	@Override
@@ -113,20 +114,20 @@ public class BarIconUpdater extends BroadcastReceiver
 	}
 
 	private static class BarIconChannelDescriptor implements ChannelDescriptor
-    {
-        private final ChannelInfo info;
+	{
+		private final ChannelInfo info;
 
-        private BarIconChannelDescriptor(Context ctx)
-        {
-            info = new ChannelDescriptor.ChannelInfo(
-                    ctx.getResources().getString(R.string.nChannelStatusBarId),
-                    ctx.getResources().getString(R.string.nChannelStatusBarName)
-            );
-        }
+		private BarIconChannelDescriptor(Context ctx)
+		{
+			info = new ChannelDescriptor.ChannelInfo(
+			        ctx.getResources().getString(R.string.nChannelStatusBarId),
+			        ctx.getResources().getString(R.string.nChannelStatusBarName)
+			);
+		}
 
-        public ChannelInfo getChannelInfo() { return info; }
+		public ChannelInfo getChannelInfo() { return info; }
 
-        @Override
-        public Uri getRingtone() { return null; }
-    }
+		@Override
+		public Uri getRingtone() { return null; }
+	}
 }

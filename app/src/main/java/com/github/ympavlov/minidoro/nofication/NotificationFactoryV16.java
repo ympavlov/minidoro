@@ -25,7 +25,7 @@ public class NotificationFactoryV16 extends NotificationFactory
 		b.setTicker(tickerText);
 		b.setContentTitle(title);
 		b.setContentText(text);
-        Uri ringtone = ringtoneChannel.getRingtone();
+		Uri ringtone = ringtoneChannel.getRingtone();
 		if (ringtone != null) {
 			b.setDefaults(defaultFlags);
 			b.setSound(ringtone);

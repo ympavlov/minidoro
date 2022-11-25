@@ -22,30 +22,30 @@ public class NotificationFactoryV26 extends NotificationFactory
 
 	private void updateChannel()
 	{
-	    if (!isChannelCreated) {
-            NotificationChannel channel = new NotificationChannel(
-                    ringtoneChannel.getChannelInfo().id,
-                    ringtoneChannel.getChannelInfo().name,
-                    (ringtoneChannel.getRingtone() == null) ? NotificationManager.IMPORTANCE_LOW : NotificationManager.IMPORTANCE_HIGH);
+		if (!isChannelCreated) {
+			NotificationChannel channel = new NotificationChannel(
+			        ringtoneChannel.getChannelInfo().id,
+			        ringtoneChannel.getChannelInfo().name,
+			        (ringtoneChannel.getRingtone() == null) ? NotificationManager.IMPORTANCE_LOW : NotificationManager.IMPORTANCE_HIGH);
 
-            if (ringtoneChannel.getRingtone() != null) {
-                channel.setSound(ringtoneChannel.getRingtone(),
-                        new AudioAttributes.Builder()
-                                .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
-                                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                                .build());
-            }
+			if (ringtoneChannel.getRingtone() != null) {
+				channel.setSound(ringtoneChannel.getRingtone(),
+				                 new AudioAttributes.Builder()
+					                    .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
+					                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+					                    .build());
+			}
 
-            ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
+			((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
-            isChannelCreated = true;
-        }
+			isChannelCreated = true;
+		}
 	}
 
 	@Override
 	public Notification createNotification(String tickerText, String title, String text, int icon, boolean highPriority)
 	{
-        updateChannel();
+		updateChannel();
 
 		Notification.Builder b = new Notification.Builder(context, ringtoneChannel.getChannelInfo().id);
 

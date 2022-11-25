@@ -4,6 +4,6 @@ import com.github.ympavlov.minidoro.nofication.ChannelDescriptor;
 
 public interface NotificationPreferences extends ChannelDescriptor
 {
-    boolean isRingtoneDefault();
-    boolean isDirectChangeAvailable();
+	boolean isRingtoneDefault();
+	boolean isDirectChangeAvailable();
 }

@@ -10,28 +10,28 @@ import static org.mockito.Mockito.when;
 
 public class AppPreferencesTest
 {
-    private void testRestoreIncorrectValue(String value)
-    {
-        Stage s = Stage.WORK;
+	private void testRestoreIncorrectValue(String value)
+	{
+		Stage s = Stage.WORK;
 
-        SharedPreferences p = Mockito.mock(SharedPreferences.class);
+		SharedPreferences p = Mockito.mock(SharedPreferences.class);
 
-        when(p.getString(s.durationPref, Integer.toString(s.defaultDuration))).thenReturn(value);
+		when(p.getString(s.durationPref, Integer.toString(s.defaultDuration))).thenReturn(value);
 
-        AppPreferences ap = new AppPreferences(p);
+		AppPreferences ap = new AppPreferences(p);
 
-        assertEquals(ap.getDuration(s), s.defaultDuration);
-    }
+		assertEquals(ap.getDuration(s), s.defaultDuration);
+	}
 
-    @Test
-    public void testRestoreZero()
-    {
-        testRestoreIncorrectValue("0");
-    }
+	@Test
+	public void testRestoreZero()
+	{
+		testRestoreIncorrectValue("0");
+	}
 
-    @Test
-    public void testRestoreIncorrectNumberFloat()
-    {
-        testRestoreIncorrectValue(".0");
-    }
+	@Test
+	public void testRestoreIncorrectNumberFloat()
+	{
+		testRestoreIncorrectValue(".0");
+	}
 }

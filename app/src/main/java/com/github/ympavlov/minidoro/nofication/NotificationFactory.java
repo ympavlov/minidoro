@@ -22,14 +22,14 @@ public abstract class NotificationFactory
 
 	protected final int defaultFlags = Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS; // [4]
 
-    private static final int USE_V16_SINCE = 16;
-    //private static final int USE_V26_SINCE = 26; FIXME test this impl only on latter versions first, use old styled if possible
-    private static final int USE_V26_SINCE = 30;
+	private static final int USE_V16_SINCE = 16;
+	//private static final int USE_V26_SINCE = 26; FIXME test this impl only on latter versions first, use old styled if possible
+	private static final int USE_V26_SINCE = 30;
 
-    public static NotificationPreferences getChannelRingtoneProvider(Context ctx, AppPreferences.RingtoneSharedPreferences p)
-    {
-        return (Build.VERSION.SDK_INT >= USE_V26_SINCE) ? new RingtoneNotificationChannel(ctx, p) : p;
-    }
+	public static NotificationPreferences getChannelRingtoneProvider(Context ctx, AppPreferences.RingtoneSharedPreferences p)
+	{
+		return (Build.VERSION.SDK_INT >= USE_V26_SINCE) ? new RingtoneNotificationChannel(ctx, p) : p;
+	}
 
 	public static NotificationFactory getFactory(Context context, Class<? extends Activity> activity, ChannelDescriptor ringtoneChannel)
 	{

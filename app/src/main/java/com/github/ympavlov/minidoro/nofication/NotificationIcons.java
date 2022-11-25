@@ -5,7 +5,7 @@ import com.github.ympavlov.minidoro.R;
 
 public class NotificationIcons
 {
-	public static final int NPARTS = 5;
+	public static final int N_SLICES = 5;
 
 	public static int getBreakIcon(int n)
 	{

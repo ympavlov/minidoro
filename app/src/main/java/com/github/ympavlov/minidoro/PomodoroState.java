@@ -16,6 +16,7 @@ public class PomodoroState extends Observable implements Serializable
 
 	private int quotes, dashes; // current work counters [7]
 	private int allQuotes, allDashes; // all works counters
+	private boolean isTimerOn;
 	private long untilMillis;
 	private int lastLongBreak; // work number last long break happened after
 
@@ -44,19 +45,25 @@ public class PomodoroState extends Observable implements Serializable
 		return allDashes;
 	}
 
-	public boolean isTimerOn() { return untilMillis != 0; }
+	public boolean isTimerOn() { return isTimerOn; }
 
-	public int getWorksSinceLastLongBreak() { return works - lastLongBreak; }
+	/*
+	 * Get count of works happened after last long break, <b>including</b> current (if it's going on)
+	 */
+	public int getWorksSinceLastLongBreak() { return works + (isTimerOn() ? 1 : 0) - lastLongBreak; }
 
 	/*
 	 * Change status (work to pause and pause to work) and start period
 	 */
-	public void start(Stage next, long startTime, int duration)
+	@SuppressWarnings("IntegerMultiplicationImplicitCastToLong")
+	public void start(Stage next, long startTime, int duration, int longBreakVariance)
 	{
-		stage = next;
-		if (next == Stage.LONG_BREAK)
+		if (next == Stage.WORK && (startTime - untilMillis >= TimeTicker.MINUTE * longBreakVariance)) {
 			lastLongBreak = works;
+		}
+		stage = next;
 		untilMillis = startTime + duration * TimeTicker.MINUTE;
+		isTimerOn = true;
 	}
 
 	long getUntilMillis() { return untilMillis; }
@@ -64,11 +71,11 @@ public class PomodoroState extends Observable implements Serializable
 	/*
 	 * [8] Stop current work and cancel current counters
 	 */
-	public void stop()
+	public void stopWork()
 	{
 		if (stage.isWork) {
 			stage = Stage.BREAK; // break ended, no matter long or short
-			untilMillis = 0;
+			isTimerOn = false;
 
 			quotes = 0;
 			dashes = 0;
@@ -93,7 +100,7 @@ public class PomodoroState extends Observable implements Serializable
 	int tick(long currTime)
 	{
 		if (untilMillis <= currTime) {
-			if (untilMillis > 0)
+			if (isTimerOn)
 				ended();
 			return 0;
 		}
@@ -102,7 +109,7 @@ public class PomodoroState extends Observable implements Serializable
 
 	private void ended()
 	{
-		untilMillis = 0;
+		isTimerOn = false;
 
 		if (stage.isWork)
 			works++;

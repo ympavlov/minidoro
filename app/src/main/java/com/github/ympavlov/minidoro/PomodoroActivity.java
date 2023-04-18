@@ -338,7 +338,7 @@ public class PomodoroActivity extends Activity
 
 	private void startWorkBreak(Stage next)
 	{
-		pomodoroState.start(next, System.currentTimeMillis(), prefs.getDuration(next));
+		pomodoroState.start(next, System.currentTimeMillis(), prefs.getDuration(next), prefs.getLongBreakVariance());
 
 		// [4a] End up notification that has overridden silent mode
 		pomodoroContext.ringerModeManager.returnUserMode();
@@ -458,7 +458,7 @@ public class PomodoroActivity extends Activity
 			{
 				if (i == android.content.DialogInterface.BUTTON_POSITIVE) {
 					finishWorkBreak();
-					pomodoroState.stop();
+					pomodoroState.stopWork();
 					updateCounters();
 					showStartScreen();
 				}

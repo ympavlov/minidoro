@@ -1,0 +1,1 @@
+* Long break counter resets if last break was actually long

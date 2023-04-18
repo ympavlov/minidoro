@@ -6,7 +6,8 @@
 	so that
 		I can see in my devices the time left for a break period without touching it
 		and then I can get a notification when timer stops
-3. As a user I can start long break timer after specified number of work times finished since beginning or previous long break),
+3. As a user I can start long break timer after specified number of work times finished since beginning or previous
+long break (a break lasted long),
 	so that
 		I can see in my devices the time left for a long break period without touching it
 		and then I can get a notification when timer stops

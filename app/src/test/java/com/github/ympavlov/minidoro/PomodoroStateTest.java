@@ -30,7 +30,7 @@ public class PomodoroStateTest
 
 		s.addObserver(new PomodoroStateTestObserver());
 
-		s.start(Stage.WORK, startTime, workDuration);
+		s.start(Stage.WORK, startTime, workDuration, 0);
 
 		assertTrue(s.isTimerOn());
 		assertFalse(observerWasNotified);

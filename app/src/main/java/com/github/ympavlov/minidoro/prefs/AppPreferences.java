@@ -49,7 +49,8 @@ public class AppPreferences
 		);
 	}
 
-	public boolean isLongBreaksOn() { return getDuration(BREAK) != getDuration(LONG_BREAK); }
+	public int getLongBreakVariance() { return getDuration(LONG_BREAK) - getDuration(BREAK); }
+	public boolean isLongBreaksOn() { return getLongBreakVariance() > 0; }
 
 	public int getLongBreaksPeriodicity()
 	{

@@ -3,6 +3,9 @@ package com.github.ympavlov.minidoro;
 import java.io.Serializable;
 import java.util.Observable;
 
+import static com.github.ympavlov.minidoro.Stage.*;
+import static com.github.ympavlov.minidoro.TimeTicker.MINUTE;
+
 /*
  * This class encapsulates all the pomodoro logic state
  * Other app classes' states can be recreated from this state
@@ -20,7 +23,7 @@ public class PomodoroState extends Observable implements Serializable
 	private long untilMillis;
 	private int lastLongBreak; // work number last long break happened after
 
-	public PomodoroState() { this.stage = Stage.BREAK; }
+	public PomodoroState() { this.stage = BREAK; }
 
 	public boolean noCurrQuotes() { return quotes <= 0; }
 	public boolean noCurrDashes() { return dashes <= 0; }
@@ -58,11 +61,11 @@ public class PomodoroState extends Observable implements Serializable
 	@SuppressWarnings("IntegerMultiplicationImplicitCastToLong")
 	public void start(Stage next, long startTime, int duration, int longBreakVariance)
 	{
-		if (next == Stage.WORK && (startTime - untilMillis >= TimeTicker.MINUTE * longBreakVariance)) {
+		if (stage == LONG_BREAK || stage == BREAK && (startTime - untilMillis >= MINUTE * longBreakVariance))
 			lastLongBreak = works;
-		}
+
 		stage = next;
-		untilMillis = startTime + duration * TimeTicker.MINUTE;
+		untilMillis = startTime + duration * MINUTE;
 		isTimerOn = true;
 	}
 
@@ -74,7 +77,7 @@ public class PomodoroState extends Observable implements Serializable
 	public void stopWork()
 	{
 		if (stage.isWork) {
-			stage = Stage.BREAK; // break ended, no matter long or short
+			stage = BREAK; // break ended, no matter long or short
 			isTimerOn = false;
 
 			quotes = 0;

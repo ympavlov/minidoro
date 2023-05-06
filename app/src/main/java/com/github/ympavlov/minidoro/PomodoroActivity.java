@@ -16,6 +16,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 //import android.util.Log;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
@@ -339,6 +340,9 @@ public class PomodoroActivity extends Activity
 	private void startWorkBreak(Stage next)
 	{
 		pomodoroState.start(next, System.currentTimeMillis(), prefs.getDuration(next), prefs.getLongBreakVariance());
+		if (pomodoroState.getWorksSinceLastLongBreak() == 0) {
+			Log.i("Minidoro", "This break was treated as a long one");
+		}
 
 		// [4a] End up notification that has overridden silent mode
 		pomodoroContext.ringerModeManager.returnUserMode();

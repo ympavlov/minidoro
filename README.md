@@ -15,6 +15,11 @@ Also it's assumed to be colorblind friendly
 <img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="phone screenshot 2" style="max-width: 25%;"/>
 <img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/3.png?raw=true" alt="wear screenshot" style="max-width: 25%;"/>
 
+# Sailfish OS/Аврора ОС port
+Exists: https://openrepos.net/content/ichthyosaurus/minidoro
+
+Sources: https://github.com/ichthyosaurus/harbour-minidoro/tree/main
+
 # Build requirements
 Use Gradle 4.6–5.6.4 to build app for any Android version (or you can raise up com.android.tools.build:gradle version by yourself before build). Android.support/AndroidX is not used (in runtime) since it was almost useless here
 

@@ -11,9 +11,9 @@ Minidoro is gained to be simple, reliable and easy to use and run on 100% of And
 
 Also it's assumed to be colorblind friendly
 
-<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/1.png?raw=true" alt="phone screenshot 1" style="height: 20em;"/>
-<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="phone screenshot 2" style="width: 20em;"/>
-<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/wearScreenshots/1.png?raw=true" alt="wear screenshot" style="height: 20em;"/>
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/1.png?raw=true" alt="phone screenshot 1" style="height: 15em;"/>
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="phone screenshot 2" style="width: 15em;"/>
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/wearScreenshots/2.png?raw=true" alt="wear screenshot" style="height: 15em;"/>
 
 # Sailfish OS/Аврора ОС port
 Exists: https://openrepos.net/content/ichthyosaurus/minidoro

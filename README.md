@@ -3,7 +3,7 @@
 
 Minidoro is a minimalistic Pomodoro® timer app, following Pomodoro® Technique very rigorously
 
-[Pomodoro® Technique](http://www.pomodorotechnique.com/) is an extremely simple but efficient time management technique
+[Pomodoro® Technique](http://www.pomodorotechnique.com/) is an extremely simple but efficient time management method
 
 The main thing this app does is show how much time left for work or break and take care you are not distracted while you work (by notifications from the device)
 

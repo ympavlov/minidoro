@@ -11,9 +11,9 @@ Minidoro is gained to be simple, reliable and easy to use and run on 100% of And
 
 Also it's assumed to be colorblind friendly
 
-![phone screenshot 1](https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/1.png?raw=true)
-![phone screenshot 2](https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/2.png?raw=true)
-![wear screenshot](https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/wearScreenshots/2.png?raw=true)
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/1.png?raw=true" alt="phone screenshot 1" style="max-width: 45%;"/>
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="phone screenshot 2" style="max-width: 25%;"/>
+<img src="https://github.com/ympavlov/minidoro/blob/main/metadata/en-US/images/phoneScreenshots/3.png?raw=true" alt="wear screenshot" style="max-width: 25%;"/>
 
 # Build requirements
 Use Gradle 4.6–5.6.4 to build app for any Android version (or you can raise up com.android.tools.build:gradle version by yourself before build). Android.support/AndroidX is not used (in runtime) since it was almost useless here

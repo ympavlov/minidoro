@@ -1,8 +1,8 @@
-Minidoro is a very minimalist but reliable Pomodoro® Technique timer
+Minidoro is a very minimalist but reliable Pomodoro® timer, following Pomodoro® Technique very rigorously.
 
 Pomodoro® Technique is extremely simple but efficient time management technique developed by Francesco Cirillo.
 
-The proposal is it's simpler to concentrate on work for a relatively short period (i.e., 25 min) keeping in mind you can take a rest or switch to another activity after that.
+The proposal is it's easier to concentrate on work for a relatively short period (i.e., 25 min) keeping in mind you can take a rest or switch to another activity after that.
 
 That's very simple:
 <ul>

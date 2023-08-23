@@ -25,11 +25,11 @@ public class PomodoroState extends Observable implements Serializable
 
 	public PomodoroState() { this.stage = BREAK; }
 
-	public boolean noCurrQuotes() { return quotes <= 0; }
-	public boolean noCurrDashes() { return dashes <= 0; }
+	public int currQuotes() { return quotes; }
+	public int currDashes() { return dashes; }
 
-	public int getQuotes() { return quotes + allQuotes; }
-	public int getDashes() { return dashes + allDashes; }
+	public int allQuotes() { return quotes + allQuotes; }
+	public int allDashes() { return dashes + allDashes; }
 
 	public int incrementQuotes() { return ++quotes + allQuotes; }
 	public int incrementDashes() { return ++dashes + allDashes; }

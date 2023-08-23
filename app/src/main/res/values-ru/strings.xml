@@ -31,7 +31,11 @@
 	<string name="preferences">Предпочтения</string>
 	<string name="menuAboutPomodoro">О Технике Помидора®</string>
 	<string name="menuQuit">Остановить и выйти</string>
+	<string name="tooltipQ1">Нажмите ( ʼ ), чтобы записать,</string>
+	<string name="tooltipQ2">что ВЫ САМИ ОТВЛЕКЛИСЬ</string>
 	<string name="menuRemoveQ">Убрать один апостроф ( ʼ )</string>
+	<string name="tooltipD1">Нажмите ( - ), чтобы записать,</string>
+	<string name="tooltipD2">что ВАС ОТВЛЕКЛИ</string>
 	<string name="menuRemoveD">Убрать один прочерк ( - )</string>
 
 	<string name="editPreferences">Изменить предпочтения</string>

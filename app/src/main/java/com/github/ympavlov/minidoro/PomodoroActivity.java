@@ -446,8 +446,8 @@ public class PomodoroActivity extends Activity
 
 	private void updateCounters()
 	{
-		updateCounter(R.id.quotes, QUOTE, pomodoroState.getQuotes());
-		updateCounter(R.id.dashes, DASH, pomodoroState.getDashes());
+		updateCounter(R.id.quotes, QUOTE, pomodoroState.allQuotes());
+		updateCounter(R.id.dashes, DASH, pomodoroState.allDashes());
 	}
 
 	private void removeQuote() { updateCounter(R.id.quotes, QUOTE, pomodoroState.removeQuote()); }
@@ -624,13 +624,13 @@ public class PomodoroActivity extends Activity
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu)
 	{
-		if (pomodoroState.noCurrQuotes())
+		if (pomodoroState.currQuotes() > 0)
 			menu.removeItem(MENU_DEC_QUOTES);
 		else if (menu.findItem(MENU_DEC_QUOTES) == null)
 			menu.add(0, MENU_DEC_QUOTES, 0, getString(R.string.menuRemoveQ))
 					.setIcon(android.R.drawable.ic_menu_revert);
 
-		if (pomodoroState.noCurrDashes())
+		if (pomodoroState.currDashes() > 0)
 			menu.removeItem(MENU_DEC_DASHES);
 		else if (menu.findItem(MENU_DEC_DASHES) == null)
 			menu.add(0, MENU_DEC_DASHES, 0, getString(R.string.menuRemoveD))
@@ -674,20 +674,24 @@ public class PomodoroActivity extends Activity
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
-		int text = 0;
-		switch (v.getId()) {
-			case R.id.quotes:
-				if (pomodoroState.noCurrQuotes())
-					return;
-				text = R.string.menuRemoveQ;
-				break;
-			case R.id.dashes:
-				if (pomodoroState.noCurrDashes())
-					return;
-				text = R.string.menuRemoveD;
+		int tip1, tip2, action = 0;
+
+		if (v.getId() == R.id.quotes) {
+			tip1 = R.string.tooltipQ1;
+			tip2 = R.string.tooltipQ2;
+			if (pomodoroState.currQuotes() > 0)
+				action = R.string.menuRemoveQ;
+		} else { // R.id.dashes
+			tip1 = R.string.tooltipD1;
+			tip2 = R.string.tooltipD2;
+			if (pomodoroState.currDashes() > 0)
+				action = R.string.menuRemoveD;
 		}
-		if (text != 0)
-			menu.add(0, v.getId(), 0, getString(text));
+
+		menu.add(0, v.getId(), 0, getString(tip1)).setEnabled(false);
+		menu.add(0, v.getId(), 0, getString(tip2)).setEnabled(false);
+		if (action != 0)
+			menu.add(0, v.getId(), 0, getString(action));
 	}
 
 	// [7a]

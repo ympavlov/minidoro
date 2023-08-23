@@ -1,1 +1,2 @@
+* Added tooltips on hyphen and apostrophe buttons that appear on long press
 * Long break counter resets if last break was actually long

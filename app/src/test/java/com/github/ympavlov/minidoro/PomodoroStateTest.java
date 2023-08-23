@@ -23,10 +23,10 @@ public class PomodoroStateTest
 
 		assertFalse(s.isTimerOn());
 
-		assertEquals(s.getDashes(), 0);
-		assertEquals(s.getQuotes(), 0);
-		assertTrue(s.noCurrDashes());
-		assertTrue(s.noCurrQuotes());
+		assertEquals(s.currDashes(), 0);
+		assertEquals(s.currQuotes(), 0);
+		assertEquals(s.allDashes(), 0);
+		assertEquals(s.allQuotes(), 0);
 		assertEquals(s.works, 0);
 		assertEquals(s.getWorksSinceLastLongBreak(), 0);
 

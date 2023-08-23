@@ -153,19 +153,17 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
 		public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
 		@Override
-		public void afterTextChanged(Editable editable)
+		public void afterTextChanged(Editable s)
 		{
-			// Replace leading zeros
-			String s = editable.toString();
+			// Step 1. Replace ALL zeros not following non-zeros (0010 -> 10, 00 -> '', 0 -> '')
 			if (s.length() > 0 && s.charAt(0) == '0') {
 				int i = 0;
 				while (++i < s.length() && s.charAt(i) == '0');
-				editable.replace(0, i, "");
+				s.replace(0, i, "");
 			}
-			// Limit value to 2 digits
-			s = editable.toString();
+			// Step 2. Limit value to 2 digits
 			if (s.length() > 2) {
-				editable.replace(2, s.length(), "");
+				s.replace(2, s.length(), "");
 			}
 		}
 	}

@@ -29,12 +29,10 @@
 	<string name="preferences">Preferences</string>
 	<string name="menuAboutPomodoro">About Pomodoro® Technique</string>
 	<string name="menuQuit">Stop &amp; Quit</string>
-	<string name="tooltipQ1">Touch ( ʼ ) to count every time</string>
-	<string name="tooltipQ2">YOU ARE interrupting the work</string>
-	<string name="menuRemoveQ">Remove one apostrophe ( ʼ )</string>
-	<string name="tooltipD1">Touch ( - ) to count every time</string>
-	<string name="tooltipD2">SOMEONE TRIES to interrupt you</string>
-	<string name="menuRemoveD">Remove one dash ( - )</string>
+	<string name="tooltipQ"   >Count every time YOU distract yourself</string>
+	<string name="menuRemoveQ">Cancel one internal self-distraction ( ʼ )</string>
+	<string name="tooltipD"   >Count every time SOMEONE interrupts you</string>
+	<string name="menuRemoveD">Cancel one external interruption ( - )</string>
 
 	<string name="quote" translatable="false">ʼ</string>
 	<string name="dash" translatable="false">-</string>

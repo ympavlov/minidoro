@@ -674,24 +674,21 @@ public class PomodoroActivity extends Activity
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
-		int tip1, tip2, action = 0;
+		int tooltip, action;
+		boolean enabled;
 
 		if (v.getId() == R.id.quotes) {
-			tip1 = R.string.tooltipQ1;
-			tip2 = R.string.tooltipQ2;
-			if (pomodoroState.currQuotes() > 0)
-				action = R.string.menuRemoveQ;
+			tooltip = R.string.tooltipQ;
+			action = R.string.menuRemoveQ;
+			enabled = pomodoroState.currQuotes() > 0;
 		} else { // R.id.dashes
-			tip1 = R.string.tooltipD1;
-			tip2 = R.string.tooltipD2;
-			if (pomodoroState.currDashes() > 0)
-				action = R.string.menuRemoveD;
+			tooltip = R.string.tooltipD;
+			action = R.string.menuRemoveD;
+			enabled = pomodoroState.currDashes() > 0;
 		}
 
-		menu.add(0, v.getId(), 0, getString(tip1)).setEnabled(false);
-		menu.add(0, v.getId(), 0, getString(tip2)).setEnabled(false);
-		if (action != 0)
-			menu.add(0, v.getId(), 0, getString(action));
+		menu.setHeaderTitle(tooltip);
+		menu.add(0, v.getId(), 0, getString(action)).setEnabled(enabled);
 	}
 
 	// [7a]

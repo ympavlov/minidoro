@@ -1,0 +1,2 @@
+* Tooltips on hyphen and apostrophe adjusted
+* Fixed: all counters flushes after stop & quit

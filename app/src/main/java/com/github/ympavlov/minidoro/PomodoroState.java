@@ -50,6 +50,8 @@ public class PomodoroState extends Observable implements Serializable
 
 	public boolean isTimerOn() { return isTimerOn; }
 
+	public boolean isWorthToSave() { return works > 0; }
+
 	/*
 	 * Get count of works happened after last long break, <b>including</b> current (if it's going on)
 	 */
@@ -78,6 +80,7 @@ public class PomodoroState extends Observable implements Serializable
 	{
 		if (stage.isWork) {
 			stage = BREAK; // break ended, no matter long or short
+			untilMillis = 0;
 			isTimerOn = false;
 
 			quotes = 0;
@@ -102,25 +105,27 @@ public class PomodoroState extends Observable implements Serializable
 	 */
 	int tick(long currTime)
 	{
-		if (untilMillis <= currTime) {
+		long res = untilMillis - currTime;
+		if (res <= 0) {
 			if (isTimerOn)
 				ended();
 			return 0;
 		}
-		return (int) (untilMillis - currTime);
+		return (int) res;
 	}
 
 	private void ended()
 	{
 		isTimerOn = false;
 
-		if (stage.isWork)
+		if (stage.isWork) {
 			works++;
 
-		allQuotes += quotes;
-		quotes = 0;
-		allDashes += dashes;
-		dashes = 0;
+			allQuotes += quotes;
+			quotes = 0;
+			allDashes += dashes;
+			dashes = 0;
+		}
 
 		setChanged();
 		notifyObservers();

@@ -47,8 +47,8 @@ public class Bell implements Observer
 		}
 
 		// Delay notification to make sure DnD be off
-	handler.post(new Runnable() {
-		@Override
+		handler.post(new Runnable() {
+			@Override
 			public void run()
 			{
 				final PomodoroState state = (PomodoroState) observable;

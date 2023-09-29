@@ -24,7 +24,7 @@
 		<item quantity="other">%d minutes left for a break</item>
 	</plurals>
 	<string name="barBreakWish">Have a nice break</string>
-	<string name="barMinidoroNotifies">Minidoro notifies you when break ends</string>
+	<string name="barMinidoroNotifies">Minidoro notifies when to start work</string>
 
 	<string name="preferences">Preferences</string>
 	<string name="menuAboutPomodoro">About Pomodoro® Technique</string>

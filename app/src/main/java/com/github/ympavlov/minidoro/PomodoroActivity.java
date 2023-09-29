@@ -15,7 +15,6 @@ import android.os.IBinder;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-//import android.util.Log;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.*;
@@ -480,9 +479,14 @@ public class PomodoroActivity extends Activity
 
 	private void stopAndQuit()
 	{
+		// TODO think out better way to dismiss state and delete observers in onDestroy
+		pomodoroState.deleteObservers();
+		pomodoroState = null;
+
 		if (timerServiceConnection.getService() != null)
 			timerServiceConnection.getService().onTaskRemoved(timerServiceIntent);
 		notificationManager.cancel(Bell.NOTIFICATION_ID);
+
 		finish();
 	}
 
@@ -513,7 +517,7 @@ public class PomodoroActivity extends Activity
 	@Override
 	public void onBackPressed()
 	{
-		if (!pomodoroState.isTimerOn() && pomodoroState.works > 0)
+		if (!pomodoroState.isTimerOn() && pomodoroState.isWorthToSave())
 			askStopAndQuit();
 		else if (pomodoroState.isTimerOn() && pomodoroState.stage.isWork)
 			askStopWork();
@@ -529,24 +533,18 @@ public class PomodoroActivity extends Activity
 
 		//Log.d("Minidoro", "Activity on pause");
 
-		if (pomodoroContext != null) { // ignore events before initialization
-			if (!pomodoroState.stage.isWork) {
-				// TODO: dismissState placed in PomodoroService, I think saveState should be bound to it
-				if (pomodoroState.works > 0) // [5]
-					StateSaver.saveState(this, pomodoroState);
+		if (pomodoroState != null) { // Save state if it's needed
+			if (!pomodoroState.stage.isWork && (pomodoroState.isTimerOn() || pomodoroState.isWorthToSave())) { // [2], [5]
+				// Start main service. Otherwise the service may be reinitialized when bound, but not started
+				if (Build.VERSION.SDK_INT >= 26)
+					startForegroundService(timerServiceIntent);
+				else
+					startService(timerServiceIntent);
 
-				if (pomodoroState.isTimerOn()) { // [2]
-					// Start main service. Otherwise the service may be reinitialized when bound, but not started
-					if (Build.VERSION.SDK_INT >= 26)
-						startForegroundService(timerServiceIntent);
-					else
-						startService(timerServiceIntent);
-
-					if (timerServiceConnection.getService() == null) // rare case (see onServiceDisconnected above)
-						bindService(timerServiceIntent, timerServiceConnection, Context.BIND_AUTO_CREATE);
-					else
-						timerServiceConnection.getService().backgroundTimer();
-				}
+				if (timerServiceConnection.getService() == null) // rare case (see onServiceDisconnected above)
+					bindService(timerServiceIntent, timerServiceConnection, Context.BIND_AUTO_CREATE);
+				else
+					timerServiceConnection.getService().goBackground();
 			}
 
 			// [4a]
@@ -592,7 +590,8 @@ public class PomodoroActivity extends Activity
 		super.onDestroy();
 		//Log.d("Minidoro", "Main activity is destroying");
 
-		pomodoroState.deleteObserver(stateObserver);
+		if (pomodoroState != null)
+			pomodoroState.deleteObserver(stateObserver);
 		ticker.stop();
 
 		// If user doesn't want to continue revert some global settings changed by us
@@ -719,12 +718,14 @@ public class PomodoroActivity extends Activity
 			//Log.d("Minidoro", "Restoring state from file");
 			pomodoroState = StateSaver.restoreState(PomodoroActivity.this);
 
-			// Through away old state (older then half day)
+			// Throw away old state (elder than half day)
 			if (pomodoroState != null && pomodoroState.getUntilMillis() < System.currentTimeMillis() - 2 * MAX_WAIT_USER_RETURN)
 				pomodoroState = null;
 
-			if (pomodoroState == null)
+			if (pomodoroState == null) {
+				//Log.d("Minidoro", "Building new state");
 				pomodoroState = new PomodoroState();
+			}
 
 			// [4]
 			pomodoroState.addObserver(new Bell(
@@ -784,7 +785,7 @@ public class PomodoroActivity extends Activity
 			}
 
 			// in case the state was restored from file
-			if (pomodoroState.isTimerOn() && !pomodoroState.stage.isWork) {
+			if (pomodoroState.isWorthToSave() && !pomodoroState.stage.isWork) {
 				service.init(pomodoroContext, prefs);
 			}
 		}

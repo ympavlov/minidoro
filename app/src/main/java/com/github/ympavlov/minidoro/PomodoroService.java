@@ -22,7 +22,7 @@ public class PomodoroService extends Service
 
 	private PomodoroContext pomodoroContext;
 
-	private boolean startedForeground;
+	private boolean bgInitDone;
 	private PendingIntent alarmIntent;
 
 	private AppPreferences prefs;
@@ -39,11 +39,11 @@ public class PomodoroService extends Service
 			alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
 		if (pomodoroContext.pomodoroState.stage.isWork) {
-			if (startedForeground) {
+			if (bgInitDone) {
 				//Log.d("Minidoro", "Stopping Timer Service. It's not needed when work");
 				stopForeground(true);
 				stopSelf();
-				startedForeground = false;
+				bgInitDone = false;
 			}
 		}
 	}
@@ -55,28 +55,24 @@ public class PomodoroService extends Service
 		BarIconUpdater.stop(this);
 	}
 
-	/*
-	 * Starts background timer when the activity came background
-	 */
-	void backgroundTimer()
+	private void setupBgStatusUpdate(long leftMillis)
 	{
-		if (!startedForeground) {
-			long leftMillis = pomodoroContext.pomodoroState.refresh();
-			BarIconUpdater.setDuration(prefs.getDuration(pomodoroContext.pomodoroState.stage));
-			Notification n = BarIconUpdater.createForegroundNotification(this,
+		PomodoroState ps = pomodoroContext.pomodoroState;
+		long until = ps.getUntilMillis();
+
+		BarIconUpdater.setDuration(prefs.getDuration(ps.stage));
+		Notification n = BarIconUpdater.createForegroundNotification(this,
 					getString(R.string.barMinidoroNotifies),
 					leftMillis,
 					BarIconUpdater.calcIconsLeft(leftMillis)
 			);
 
-			startForeground(Bell.NOTIFICATION_ID, n);
-			startedForeground = true;
-		}
-		long until = pomodoroContext.pomodoroState.getUntilMillis();
+		startForeground(Bell.NOTIFICATION_ID, n);
+
 		//Log.d("Minidoro", "Setting alarms up to " + until);
-		// [2a]
-		BarIconUpdater.setupNextAlarm(this, until, prefs.getDuration(pomodoroContext.pomodoroState.stage));
-		// [5]
+		// [2a] Series of alarms to update notification icon
+		BarIconUpdater.setupNextAlarm(this, until, leftMillis, prefs.getDuration(ps.stage));
+		// [5] The last alarm to signal the break is over
 		if (alarmIntent == null) {
 			Intent i = new Intent(this, PomodoroActivity.class);
 			alarmIntent = PendingIntent.getActivity(this, 1, i, PendingIntent.FLAG_IMMUTABLE);
@@ -85,6 +81,27 @@ public class PomodoroService extends Service
 				alarmManager.set(AlarmManager.RTC_WAKEUP, until, alarmIntent);
 			else // but then in case if maintenance window is really long we need AllowWhileIdle
 				alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, until, alarmIntent);
+		}
+	}
+
+	/*
+	 * Save state and start background timer when main activity came background
+	 */
+	void goBackground()
+	{
+		if (!bgInitDone) {
+			PomodoroState ps = pomodoroContext.pomodoroState;
+			long left = ps.refresh();
+
+			// 1. Back up state [5]
+			StateSaver.saveState(this, ps);
+
+			// 2. Set up timers
+			if (left > 0) {
+				setupBgStatusUpdate(left);
+			}
+
+			bgInitDone = true;
 		}
 	}
 

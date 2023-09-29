@@ -37,14 +37,13 @@ public class BarIconUpdater extends BroadcastReceiver
 		return Math.min((int) Math.ceil((double) leftMillis / periodMillis), NotificationIcons.N_SLICES);
 	}
 
-	static void setupNextAlarm(Context ctx, long untilMillis, int durationMinutes)
+	static void setupNextAlarm(Context ctx, long untilMillis, long leftMillis, int durationMinutes)
 	{
 		if (pIntent != null)
 			return;
 
 		setDuration(durationMinutes);
 		until = untilMillis;
-		long leftMillis = untilMillis - System.currentTimeMillis();
 		int n = calcIconsLeft(leftMillis)
 				- 1; // Because last icon update should be made by Bell
 
